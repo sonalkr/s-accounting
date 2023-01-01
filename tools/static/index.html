@@ -1,0 +1,79 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.6.1/d3.min.js" integrity="sha512-MefNfAGJ/pEy89xLOFs3V6pYPs6AmUhXJrRlydI/9wZuGrqxmrdQ80zKHUcyadAcpH67teDZcBeS6oMJLPtTqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.2.2/mermaid.css" rel="stylesheet" /> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.2.2/mermaid.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+</head>
+
+<body>
+
+
+    <div class="display"></div>
+    <script>
+        window.addEventListener('load', function () {
+            var svgs = d3.selectAll(".mermaid svg");
+            svgs.each(function () {
+                var svg = d3.select(this);
+                svg.html("<g>" + svg.html() + "</g>");
+                var inner = svg.select("g");
+                var zoom = d3.zoom().on("zoom", function (event) {
+                    inner.attr("transform", event.transform);
+                });
+                svg.call(zoom);
+            });
+        });
+        // function renderMermaid(){
+        //     mermaid.init(undefined,document.querySelectorAll(".mermaid"));
+        // }
+        // $(function() {
+        //     $(document).on('previewUpdated', function() {        
+        //         renderMermaid();
+        //     });
+        //     renderMermaid();
+        // });
+        function add_svg(code) {
+            el.innerHTML = code;
+        };
+        function render(text) {
+            mermaid.render('preapredSchema', text, add_svg)
+        }
+        async function run() {
+            data = await fetch('/get_schema').then(res => res.json())
+            chart2 = `erDiagram\naccount\ntransaction_entry
+            `
+            el = document.querySelector('.display')
+            // el.innerHTML = chart2
+            chart = 'erDiagram'
+
+            Object.entries(data['get_table_names']).forEach((v, k) => {
+                data[v[1]]['get_foreign_keys'].forEach((a, b) => {
+                    chart += '\n' + v[1] + ' ||--o{ ' + a['referred_table'] + ' : have \n'
+                })
+                chart = chart + "\n" + v[1] + "{\n";
+                data[v[1]]['get_columns'].forEach((a, b) => {
+                    fk = a['name'].substring(a['name'].length - 2) == 'id' ? 'FK' : ''
+                    fk = fk == 'FK' && a['name'].length == 2 ? 'PK' : fk
+                    chart += 'string ' + a['name'] + ' ' + fk + '\n';
+                })
+                chart += '}\n'
+            })
+
+            Object.entries(data['get_table_names']).forEach((v, k) => {
+
+            })
+            // chart.split('\n').forEach((a,b) => console.log(a))
+
+            render(chart)
+        }
+        run()
+
+        setInterval(run, 50000);
+
+    </script>
+</body>

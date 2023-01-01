@@ -1,0 +1,9 @@
+sqlalchemy 
+watchdog
+fastapi
+uvicorn[standard]
+matplotlib
+pygraphviz
+eralchemy
+openpyxl
+pandas

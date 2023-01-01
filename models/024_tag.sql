@@ -1,0 +1,8 @@
+
+CREATE TABLE if NOT EXISTS tag (
+    id INTEGER PRIMARY KEY,
+    tag_name TEXT NOT NULL UNIQUE
+
+     
+);
+
