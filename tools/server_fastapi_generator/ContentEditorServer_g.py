@@ -19,6 +19,10 @@ class ContentEditorServer(BaseContentEditor):
 
 
     def add_model(self, model: dict):
+        self.add_default_model(model=model)
+        
+
+    def add_default_model(self, model: dict):
         data: list = model['fields']
         self.add_to_content_nl(f'class {model["model_name"].capitalize()}(BaseModel):')
 
@@ -44,6 +48,9 @@ class ContentEditorServer(BaseContentEditor):
         self.add_nl()
 
     def add_api(self, model, router_name = 'default_api'):
+        self.add_default_api(model, router_name)
+
+    def add_default_api(self, model, router_name = 'default_api'):
         self.add_create_api(model=model, router_name=router_name)
         self.add_get_api(model=model, router_name=router_name)
         self.add_delete_api(model=model, router_name=router_name)

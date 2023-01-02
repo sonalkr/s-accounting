@@ -1,5 +1,5 @@
 from tools.server_fastapi_generator.ContentEditorServer_g import ContentEditorServer
-from tools.common_generator.base_auto_gen_g import BaseAutoGen
+from tools.common_generator.base_auto_gen_g import BaseAutoGen, pp
 
 
 
@@ -18,8 +18,9 @@ class AutoGenServer(BaseAutoGen):
     def gen_api(self):
         self.create_file('database.py',self.get_code('database.code.py'))
         # data = self.model_dict[6][0]
-        # pp.pprint(self.model_dict)
+        pp.pprint(self.model_dict)
         contentEditor = ContentEditorServer(self)
+        # print(self.model_dict)
         contentEditor.add_dependency_FastApi_Router_BaseModel()
         for data in self.model_dict:
             data = data[0]

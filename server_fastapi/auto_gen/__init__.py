@@ -107,51 +107,48 @@ async def update_link_tag__all_table(link_tag__all_table: Link_tag__all_table, d
     return "ok"
 
 
-class Transaction_entry(BaseModel):
+class Link_inventory__account__voucher(BaseModel):
     id: int | None = None
+    inventory_id: int | None = None
     account_id: int
-    ref_account_id: int
-    amount_dr: float
-    amount_cr: float
-    narration: str | None = None
+    transaction_entry_id: int
     voucher_id: int
-    voucher_number: str
 
-@default_api.post("/transaction_entry/create/")
-async def create_transaction_entry(transaction_entry: Transaction_entry, db: Session = Depends(get_db)):
-    data = transaction_entry.dict()
+@default_api.post("/link_inventory__account__voucher/create/")
+async def create_link_inventory__account__voucher(link_inventory__account__voucher: Link_inventory__account__voucher, db: Session = Depends(get_db)):
+    data = link_inventory__account__voucher.dict()
     del data['id']
     columns = ', '.join(data.keys())
     placeholders = ':'+', :'.join(data.keys())
-    query = f'INSERT INTO transaction_entry({columns}) VALUES ({placeholders});'
+    query = f'INSERT INTO link_inventory__account__voucher({columns}) VALUES ({placeholders});'
     db.execute(query, data)
     db.commit()
     return "ok"
 
 
-@default_api.get("/transaction_entry/get/")
-async def get_transaction_entry(db: Session = Depends(get_db)):
-    rs = db.execute("SELECT * FROM transaction_entry;").all()
+@default_api.get("/link_inventory__account__voucher/get/")
+async def get_link_inventory__account__voucher(db: Session = Depends(get_db)):
+    rs = db.execute("SELECT * FROM link_inventory__account__voucher;").all()
     return rs
 
-@default_api.delete("/transaction_entry/delete/")
-async def delete_transaction_entry(ids: list[int], db: Session = Depends(get_db)):
+@default_api.delete("/link_inventory__account__voucher/delete/")
+async def delete_link_inventory__account__voucher(ids: list[int], db: Session = Depends(get_db)):
     for id in ids:
-        rs = db.execute(f"SELECT * FROM transaction_entry WHERE id = {str(id)};").all()
+        rs = db.execute(f"SELECT * FROM link_inventory__account__voucher WHERE id = {str(id)};").all()
         if len(rs) == 0:
             raise HTTPException(status_code=404, detail=f"'{str(id)}'")
-        db.execute(f"DELETE FROM transaction_entry WHERE id = {str(id)};")
+        db.execute(f"DELETE FROM link_inventory__account__voucher WHERE id = {str(id)};")
     db.commit()
     return "ok"
 
-@default_api.put("/transaction_entry/update/")
-async def update_transaction_entry(transaction_entry: Transaction_entry, db: Session = Depends(get_db)):
-    data = transaction_entry.dict()
+@default_api.put("/link_inventory__account__voucher/update/")
+async def update_link_inventory__account__voucher(link_inventory__account__voucher: Link_inventory__account__voucher, db: Session = Depends(get_db)):
+    data = link_inventory__account__voucher.dict()
     id = data['id']
     del data['id']
     list_of_data = [i for i in zip(data.keys(), data.values())]
     print(list_of_data)
-    query = 'UPDATE transaction_entry SET {}'.format(', '.join("%s='%s'" % (k) for k in list_of_data))
+    query = 'UPDATE link_inventory__account__voucher SET {}'.format(', '.join("%s='%s'" % (k) for k in list_of_data))
     query = query + ' WHERE id = ' + str(id) + ';'
     print(query)
     db.execute(query)
@@ -311,6 +308,58 @@ async def update_voucher(voucher: Voucher, db: Session = Depends(get_db)):
     list_of_data = [i for i in zip(data.keys(), data.values())]
     print(list_of_data)
     query = 'UPDATE voucher SET {}'.format(', '.join("%s='%s'" % (k) for k in list_of_data))
+    query = query + ' WHERE id = ' + str(id) + ';'
+    print(query)
+    db.execute(query)
+    db.commit()
+    return "ok"
+
+
+class Transaction_entry(BaseModel):
+    id: int | None = None
+    account_id: int
+    ref_account_id: int
+    amount_dr: float
+    amount_cr: float
+    narration: str | None = None
+    voucher_id: int
+    voucher_number: str
+
+@default_api.post("/transaction_entry/create/")
+async def create_transaction_entry(transaction_entry: Transaction_entry, db: Session = Depends(get_db)):
+    data = transaction_entry.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO transaction_entry({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@default_api.get("/transaction_entry/get/")
+async def get_transaction_entry(db: Session = Depends(get_db)):
+    rs = db.execute("SELECT * FROM transaction_entry;").all()
+    return rs
+
+@default_api.delete("/transaction_entry/delete/")
+async def delete_transaction_entry(ids: list[int], db: Session = Depends(get_db)):
+    for id in ids:
+        rs = db.execute(f"SELECT * FROM transaction_entry WHERE id = {str(id)};").all()
+        if len(rs) == 0:
+            raise HTTPException(status_code=404, detail=f"'{str(id)}'")
+        db.execute(f"DELETE FROM transaction_entry WHERE id = {str(id)};")
+    db.commit()
+    return "ok"
+
+@default_api.put("/transaction_entry/update/")
+async def update_transaction_entry(transaction_entry: Transaction_entry, db: Session = Depends(get_db)):
+    data = transaction_entry.dict()
+    id = data['id']
+    del data['id']
+    list_of_data = [i for i in zip(data.keys(), data.values())]
+    print(list_of_data)
+    query = 'UPDATE transaction_entry SET {}'.format(', '.join("%s='%s'" % (k) for k in list_of_data))
     query = query + ' WHERE id = ' + str(id) + ';'
     print(query)
     db.execute(query)
@@ -606,55 +655,6 @@ async def update_voucher_type(voucher_type: Voucher_type, db: Session = Depends(
     list_of_data = [i for i in zip(data.keys(), data.values())]
     print(list_of_data)
     query = 'UPDATE voucher_type SET {}'.format(', '.join("%s='%s'" % (k) for k in list_of_data))
-    query = query + ' WHERE id = ' + str(id) + ';'
-    print(query)
-    db.execute(query)
-    db.commit()
-    return "ok"
-
-
-class Link_inventory__account__voucher(BaseModel):
-    id: int | None = None
-    inventory_id: int | None = None
-    account_id: int
-    transaction_entry_id: int
-    voucher_id: int
-
-@default_api.post("/link_inventory__account__voucher/create/")
-async def create_link_inventory__account__voucher(link_inventory__account__voucher: Link_inventory__account__voucher, db: Session = Depends(get_db)):
-    data = link_inventory__account__voucher.dict()
-    del data['id']
-    columns = ', '.join(data.keys())
-    placeholders = ':'+', :'.join(data.keys())
-    query = f'INSERT INTO link_inventory__account__voucher({columns}) VALUES ({placeholders});'
-    db.execute(query, data)
-    db.commit()
-    return "ok"
-
-
-@default_api.get("/link_inventory__account__voucher/get/")
-async def get_link_inventory__account__voucher(db: Session = Depends(get_db)):
-    rs = db.execute("SELECT * FROM link_inventory__account__voucher;").all()
-    return rs
-
-@default_api.delete("/link_inventory__account__voucher/delete/")
-async def delete_link_inventory__account__voucher(ids: list[int], db: Session = Depends(get_db)):
-    for id in ids:
-        rs = db.execute(f"SELECT * FROM link_inventory__account__voucher WHERE id = {str(id)};").all()
-        if len(rs) == 0:
-            raise HTTPException(status_code=404, detail=f"'{str(id)}'")
-        db.execute(f"DELETE FROM link_inventory__account__voucher WHERE id = {str(id)};")
-    db.commit()
-    return "ok"
-
-@default_api.put("/link_inventory__account__voucher/update/")
-async def update_link_inventory__account__voucher(link_inventory__account__voucher: Link_inventory__account__voucher, db: Session = Depends(get_db)):
-    data = link_inventory__account__voucher.dict()
-    id = data['id']
-    del data['id']
-    list_of_data = [i for i in zip(data.keys(), data.values())]
-    print(list_of_data)
-    query = 'UPDATE link_inventory__account__voucher SET {}'.format(', '.join("%s='%s'" % (k) for k in list_of_data))
     query = query + ' WHERE id = ' + str(id) + ';'
     print(query)
     db.execute(query)

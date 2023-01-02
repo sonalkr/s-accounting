@@ -56,5 +56,11 @@ class BaseAutoGen():
         code_path = f'tools/{self.dir_name}_generator/cache_code/{name}'
         return file_to_text(code_path)
 
+    def get_model_dict(self, model_name: str):
+        for data in self.model_dict:
+            if data[0]["model_name"] == model_name:
+                return data[0]
+            raise Exception(f"model_name not found{model_name}")
+
 # tools/browser_generator/cache_code 
 # tools/browser_client_generator/cache_code/index.code.ts

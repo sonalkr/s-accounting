@@ -122,59 +122,47 @@ class LinkTagAllTableCreateForm extends HTMLElement{
 }
 window.customElements.define('link-tag--all-table-create-form', LinkTagAllTableCreateForm);
 
-const transaction_entry_create_template = document.createElement('template');
-transaction_entry_create_template.innerHTML = `
+const link_inventory__account__voucher_create_template = document.createElement('template');
+link_inventory__account__voucher_create_template.innerHTML = `
 <style>
-  .transaction-entry-create-form {
+  .link-inventory--account--voucher-create-form {
     
   }
 </style>
 
-<div class="transaction-entry-create-form">
-  <div class="head">Transaction Entry<div>
+<div class="link-inventory--account--voucher-create-form">
+  <div class="head">Link Inventory  Account  Voucher<div>
   <form>
 <div hidden>Id</div>
 <div hidden>
 <input type="number" id="id" name="id" >
 </div>
+<div >Inventory Id</div>
+<div >
+<input type="number" id="inventory_id" name="inventory_id" >
+</div>
 <div >Account Id</div>
 <div >
 <input type="number" id="account_id" name="account_id" required>
 </div>
-<div >Ref Account Id</div>
+<div >Transaction Entry Id</div>
 <div >
-<input type="number" id="ref_account_id" name="ref_account_id" required>
-</div>
-<div >Amount Dr</div>
-<div >
-<input type="number" id="amount_dr" name="amount_dr" required>
-</div>
-<div >Amount Cr</div>
-<div >
-<input type="number" id="amount_cr" name="amount_cr" required>
-</div>
-<div >Narration</div>
-<div >
-<input type="text" id="narration" name="narration" >
+<input type="number" id="transaction_entry_id" name="transaction_entry_id" required>
 </div>
 <div >Voucher Id</div>
 <div >
 <input type="number" id="voucher_id" name="voucher_id" required>
-</div>
-<div >Voucher Number</div>
-<div >
-<input type="text" id="voucher_number" name="voucher_number" required>
 </div>
 <input type="submit">
 </form>
 
 </div>`;
 
-class TransactionEntryCreateForm extends HTMLElement{
+class LinkInventoryAccountVoucherCreateForm extends HTMLElement{
  constructor(){
      super();
      this.attachShadow({ mode: 'open'});
-     this.shadowRoot.appendChild(transaction_entry_create_template.content.cloneNode(true));
+     this.shadowRoot.appendChild(link_inventory__account__voucher_create_template.content.cloneNode(true));
     //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
     //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
  } 
@@ -188,7 +176,7 @@ class TransactionEntryCreateForm extends HTMLElement{
 //    this.h3;
  }
 }
-window.customElements.define('transaction-entry-create-form', TransactionEntryCreateForm);
+window.customElements.define('link-inventory--account--voucher-create-form', LinkInventoryAccountVoucherCreateForm);
 
 const account_detail_nominal_gst_create_template = document.createElement('template');
 account_detail_nominal_gst_create_template.innerHTML = `
@@ -405,6 +393,74 @@ class VoucherCreateForm extends HTMLElement{
  }
 }
 window.customElements.define('voucher-create-form', VoucherCreateForm);
+
+const transaction_entry_create_template = document.createElement('template');
+transaction_entry_create_template.innerHTML = `
+<style>
+  .transaction-entry-create-form {
+    
+  }
+</style>
+
+<div class="transaction-entry-create-form">
+  <div class="head">Transaction Entry<div>
+  <form>
+<div hidden>Id</div>
+<div hidden>
+<input type="number" id="id" name="id" >
+</div>
+<div >Account Id</div>
+<div >
+<input type="number" id="account_id" name="account_id" required>
+</div>
+<div >Ref Account Id</div>
+<div >
+<input type="number" id="ref_account_id" name="ref_account_id" required>
+</div>
+<div >Amount Dr</div>
+<div >
+<input type="number" id="amount_dr" name="amount_dr" required>
+</div>
+<div >Amount Cr</div>
+<div >
+<input type="number" id="amount_cr" name="amount_cr" required>
+</div>
+<div >Narration</div>
+<div >
+<input type="text" id="narration" name="narration" >
+</div>
+<div >Voucher Id</div>
+<div >
+<input type="number" id="voucher_id" name="voucher_id" required>
+</div>
+<div >Voucher Number</div>
+<div >
+<input type="text" id="voucher_number" name="voucher_number" required>
+</div>
+<input type="submit">
+</form>
+
+</div>`;
+
+class TransactionEntryCreateForm extends HTMLElement{
+ constructor(){
+     super();
+     this.attachShadow({ mode: 'open'});
+     this.shadowRoot.appendChild(transaction_entry_create_template.content.cloneNode(true));
+    //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
+    //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
+ } 
+
+ connectedCallback(){
+//    this.h3 = this.getAttribute("name")
+   this.render();
+ }
+
+ render(){
+//    this.h3;
+ }
+}
+window.customElements.define('transaction-entry-create-form', TransactionEntryCreateForm);
 
 const inventory_under_create_template = document.createElement('template');
 inventory_under_create_template.innerHTML = `
@@ -745,62 +801,6 @@ class VoucherTypeCreateForm extends HTMLElement{
  }
 }
 window.customElements.define('voucher-type-create-form', VoucherTypeCreateForm);
-
-const link_inventory__account__voucher_create_template = document.createElement('template');
-link_inventory__account__voucher_create_template.innerHTML = `
-<style>
-  .link-inventory--account--voucher-create-form {
-    
-  }
-</style>
-
-<div class="link-inventory--account--voucher-create-form">
-  <div class="head">Link Inventory  Account  Voucher<div>
-  <form>
-<div hidden>Id</div>
-<div hidden>
-<input type="number" id="id" name="id" >
-</div>
-<div >Inventory Id</div>
-<div >
-<input type="number" id="inventory_id" name="inventory_id" >
-</div>
-<div >Account Id</div>
-<div >
-<input type="number" id="account_id" name="account_id" required>
-</div>
-<div >Transaction Entry Id</div>
-<div >
-<input type="number" id="transaction_entry_id" name="transaction_entry_id" required>
-</div>
-<div >Voucher Id</div>
-<div >
-<input type="number" id="voucher_id" name="voucher_id" required>
-</div>
-<input type="submit">
-</form>
-
-</div>`;
-
-class LinkInventoryAccountVoucherCreateForm extends HTMLElement{
- constructor(){
-     super();
-     this.attachShadow({ mode: 'open'});
-     this.shadowRoot.appendChild(link_inventory__account__voucher_create_template.content.cloneNode(true));
-    //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
-    //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
- } 
-
- connectedCallback(){
-//    this.h3 = this.getAttribute("name")
-   this.render();
- }
-
- render(){
-//    this.h3;
- }
-}
-window.customElements.define('link-inventory--account--voucher-create-form', LinkInventoryAccountVoucherCreateForm);
 
 const account_detail_personal_tax_create_template = document.createElement('template');
 account_detail_personal_tax_create_template.innerHTML = `
