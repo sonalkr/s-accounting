@@ -1,11 +1,14 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Form
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
+from server_fastapi.auto_gen.utilities import as_form
 
 from server_fastapi.auto_gen.database import get_db
 
 default_api = APIRouter()
 
+
+@as_form
 class Account(BaseModel):
     id: int | None = None
     account_name: str
@@ -18,7 +21,7 @@ class Account(BaseModel):
     account_detail_personal_tax_id: int
 
 @default_api.post("/account/create/")
-async def create_account(account: Account, db: Session = Depends(get_db)):
+async def create_account(account: Account = Depends(Account.as_form), db: Session = Depends(get_db)):
     data = account.dict()
     del data['id']
     columns = ', '.join(data.keys())
@@ -45,7 +48,7 @@ async def delete_account(ids: list[int], db: Session = Depends(get_db)):
     return "ok"
 
 @default_api.put("/account/update/")
-async def update_account(account: Account, db: Session = Depends(get_db)):
+async def update_account(account: Account = Depends(Account.as_form), db: Session = Depends(get_db)):
     data = account.dict()
     id = data['id']
     del data['id']
@@ -59,6 +62,7 @@ async def update_account(account: Account, db: Session = Depends(get_db)):
     return "ok"
 
 
+@as_form
 class Link_tag__all_table(BaseModel):
     id: int | None = None
     tag_id: int
@@ -66,7 +70,7 @@ class Link_tag__all_table(BaseModel):
     table_id: int
 
 @default_api.post("/link_tag__all_table/create/")
-async def create_link_tag__all_table(link_tag__all_table: Link_tag__all_table, db: Session = Depends(get_db)):
+async def create_link_tag__all_table(link_tag__all_table: Link_tag__all_table = Depends(Link_tag__all_table.as_form), db: Session = Depends(get_db)):
     data = link_tag__all_table.dict()
     del data['id']
     columns = ', '.join(data.keys())
@@ -93,7 +97,7 @@ async def delete_link_tag__all_table(ids: list[int], db: Session = Depends(get_d
     return "ok"
 
 @default_api.put("/link_tag__all_table/update/")
-async def update_link_tag__all_table(link_tag__all_table: Link_tag__all_table, db: Session = Depends(get_db)):
+async def update_link_tag__all_table(link_tag__all_table: Link_tag__all_table = Depends(Link_tag__all_table.as_form), db: Session = Depends(get_db)):
     data = link_tag__all_table.dict()
     id = data['id']
     del data['id']
@@ -107,6 +111,7 @@ async def update_link_tag__all_table(link_tag__all_table: Link_tag__all_table, d
     return "ok"
 
 
+@as_form
 class Link_inventory__account__voucher(BaseModel):
     id: int | None = None
     inventory_id: int | None = None
@@ -115,7 +120,7 @@ class Link_inventory__account__voucher(BaseModel):
     voucher_id: int
 
 @default_api.post("/link_inventory__account__voucher/create/")
-async def create_link_inventory__account__voucher(link_inventory__account__voucher: Link_inventory__account__voucher, db: Session = Depends(get_db)):
+async def create_link_inventory__account__voucher(link_inventory__account__voucher: Link_inventory__account__voucher = Depends(Link_inventory__account__voucher.as_form), db: Session = Depends(get_db)):
     data = link_inventory__account__voucher.dict()
     del data['id']
     columns = ', '.join(data.keys())
@@ -142,7 +147,7 @@ async def delete_link_inventory__account__voucher(ids: list[int], db: Session = 
     return "ok"
 
 @default_api.put("/link_inventory__account__voucher/update/")
-async def update_link_inventory__account__voucher(link_inventory__account__voucher: Link_inventory__account__voucher, db: Session = Depends(get_db)):
+async def update_link_inventory__account__voucher(link_inventory__account__voucher: Link_inventory__account__voucher = Depends(Link_inventory__account__voucher.as_form), db: Session = Depends(get_db)):
     data = link_inventory__account__voucher.dict()
     id = data['id']
     del data['id']
@@ -156,20 +161,21 @@ async def update_link_inventory__account__voucher(link_inventory__account__vouch
     return "ok"
 
 
+@as_form
 class Account_detail_nominal_gst(BaseModel):
     id: int | None = None
     describe: str | None = None
     hsn: str | None = None
-    is_capital_goods: bool
-    is_rcm_applicable: bool
+    is_capital_goods: bool | None = None
+    is_rcm_applicable: bool | None = None
     igst_rate: int | None = None
     cess: int | None = None
-    cess_type: str
+    cess_type: str | None = None
     bassed_on_value: int | None = None
     bassed_on_qty_id: int | None = None
 
 @default_api.post("/account_detail_nominal_gst/create/")
-async def create_account_detail_nominal_gst(account_detail_nominal_gst: Account_detail_nominal_gst, db: Session = Depends(get_db)):
+async def create_account_detail_nominal_gst(account_detail_nominal_gst: Account_detail_nominal_gst = Depends(Account_detail_nominal_gst.as_form), db: Session = Depends(get_db)):
     data = account_detail_nominal_gst.dict()
     del data['id']
     columns = ', '.join(data.keys())
@@ -196,7 +202,7 @@ async def delete_account_detail_nominal_gst(ids: list[int], db: Session = Depend
     return "ok"
 
 @default_api.put("/account_detail_nominal_gst/update/")
-async def update_account_detail_nominal_gst(account_detail_nominal_gst: Account_detail_nominal_gst, db: Session = Depends(get_db)):
+async def update_account_detail_nominal_gst(account_detail_nominal_gst: Account_detail_nominal_gst = Depends(Account_detail_nominal_gst.as_form), db: Session = Depends(get_db)):
     data = account_detail_nominal_gst.dict()
     id = data['id']
     del data['id']
@@ -210,6 +216,7 @@ async def update_account_detail_nominal_gst(account_detail_nominal_gst: Account_
     return "ok"
 
 
+@as_form
 class Inventory(BaseModel):
     id: int | None = None
     account_name: str
@@ -225,7 +232,7 @@ class Inventory(BaseModel):
     opening_unit_rate_id: int
 
 @default_api.post("/inventory/create/")
-async def create_inventory(inventory: Inventory, db: Session = Depends(get_db)):
+async def create_inventory(inventory: Inventory = Depends(Inventory.as_form), db: Session = Depends(get_db)):
     data = inventory.dict()
     del data['id']
     columns = ', '.join(data.keys())
@@ -252,7 +259,7 @@ async def delete_inventory(ids: list[int], db: Session = Depends(get_db)):
     return "ok"
 
 @default_api.put("/inventory/update/")
-async def update_inventory(inventory: Inventory, db: Session = Depends(get_db)):
+async def update_inventory(inventory: Inventory = Depends(Inventory.as_form), db: Session = Depends(get_db)):
     data = inventory.dict()
     id = data['id']
     del data['id']
@@ -266,6 +273,7 @@ async def update_inventory(inventory: Inventory, db: Session = Depends(get_db)):
     return "ok"
 
 
+@as_form
 class Voucher(BaseModel):
     id: int | None = None
     voucher_number: str
@@ -274,7 +282,7 @@ class Voucher(BaseModel):
     voucher_type_id: int
 
 @default_api.post("/voucher/create/")
-async def create_voucher(voucher: Voucher, db: Session = Depends(get_db)):
+async def create_voucher(voucher: Voucher = Depends(Voucher.as_form), db: Session = Depends(get_db)):
     data = voucher.dict()
     del data['id']
     columns = ', '.join(data.keys())
@@ -301,7 +309,7 @@ async def delete_voucher(ids: list[int], db: Session = Depends(get_db)):
     return "ok"
 
 @default_api.put("/voucher/update/")
-async def update_voucher(voucher: Voucher, db: Session = Depends(get_db)):
+async def update_voucher(voucher: Voucher = Depends(Voucher.as_form), db: Session = Depends(get_db)):
     data = voucher.dict()
     id = data['id']
     del data['id']
@@ -315,6 +323,7 @@ async def update_voucher(voucher: Voucher, db: Session = Depends(get_db)):
     return "ok"
 
 
+@as_form
 class Transaction_entry(BaseModel):
     id: int | None = None
     account_id: int
@@ -326,7 +335,7 @@ class Transaction_entry(BaseModel):
     voucher_number: str
 
 @default_api.post("/transaction_entry/create/")
-async def create_transaction_entry(transaction_entry: Transaction_entry, db: Session = Depends(get_db)):
+async def create_transaction_entry(transaction_entry: Transaction_entry = Depends(Transaction_entry.as_form), db: Session = Depends(get_db)):
     data = transaction_entry.dict()
     del data['id']
     columns = ', '.join(data.keys())
@@ -353,7 +362,7 @@ async def delete_transaction_entry(ids: list[int], db: Session = Depends(get_db)
     return "ok"
 
 @default_api.put("/transaction_entry/update/")
-async def update_transaction_entry(transaction_entry: Transaction_entry, db: Session = Depends(get_db)):
+async def update_transaction_entry(transaction_entry: Transaction_entry = Depends(Transaction_entry.as_form), db: Session = Depends(get_db)):
     data = transaction_entry.dict()
     id = data['id']
     del data['id']
@@ -367,12 +376,13 @@ async def update_transaction_entry(transaction_entry: Transaction_entry, db: Ses
     return "ok"
 
 
+@as_form
 class Inventory_under(BaseModel):
     id: int | None = None
     inventory_under_name: str
 
 @default_api.post("/inventory_under/create/")
-async def create_inventory_under(inventory_under: Inventory_under, db: Session = Depends(get_db)):
+async def create_inventory_under(inventory_under: Inventory_under = Depends(Inventory_under.as_form), db: Session = Depends(get_db)):
     data = inventory_under.dict()
     del data['id']
     columns = ', '.join(data.keys())
@@ -399,7 +409,7 @@ async def delete_inventory_under(ids: list[int], db: Session = Depends(get_db)):
     return "ok"
 
 @default_api.put("/inventory_under/update/")
-async def update_inventory_under(inventory_under: Inventory_under, db: Session = Depends(get_db)):
+async def update_inventory_under(inventory_under: Inventory_under = Depends(Inventory_under.as_form), db: Session = Depends(get_db)):
     data = inventory_under.dict()
     id = data['id']
     del data['id']
@@ -413,6 +423,7 @@ async def update_inventory_under(inventory_under: Inventory_under, db: Session =
     return "ok"
 
 
+@as_form
 class Account_general_option(BaseModel):
     id: int | None = None
     bill_by_bill: bool
@@ -420,7 +431,7 @@ class Account_general_option(BaseModel):
     cost_center: bool
 
 @default_api.post("/account_general_option/create/")
-async def create_account_general_option(account_general_option: Account_general_option, db: Session = Depends(get_db)):
+async def create_account_general_option(account_general_option: Account_general_option = Depends(Account_general_option.as_form), db: Session = Depends(get_db)):
     data = account_general_option.dict()
     del data['id']
     columns = ', '.join(data.keys())
@@ -447,7 +458,7 @@ async def delete_account_general_option(ids: list[int], db: Session = Depends(ge
     return "ok"
 
 @default_api.put("/account_general_option/update/")
-async def update_account_general_option(account_general_option: Account_general_option, db: Session = Depends(get_db)):
+async def update_account_general_option(account_general_option: Account_general_option = Depends(Account_general_option.as_form), db: Session = Depends(get_db)):
     data = account_general_option.dict()
     id = data['id']
     del data['id']
@@ -461,6 +472,7 @@ async def update_account_general_option(account_general_option: Account_general_
     return "ok"
 
 
+@as_form
 class Account_detail_nominal_tds_tcs(BaseModel):
     id: int | None = None
     describe: str | None = None
@@ -471,7 +483,7 @@ class Account_detail_nominal_tds_tcs(BaseModel):
     tds_tcs: str
 
 @default_api.post("/account_detail_nominal_tds_tcs/create/")
-async def create_account_detail_nominal_tds_tcs(account_detail_nominal_tds_tcs: Account_detail_nominal_tds_tcs, db: Session = Depends(get_db)):
+async def create_account_detail_nominal_tds_tcs(account_detail_nominal_tds_tcs: Account_detail_nominal_tds_tcs = Depends(Account_detail_nominal_tds_tcs.as_form), db: Session = Depends(get_db)):
     data = account_detail_nominal_tds_tcs.dict()
     del data['id']
     columns = ', '.join(data.keys())
@@ -498,7 +510,7 @@ async def delete_account_detail_nominal_tds_tcs(ids: list[int], db: Session = De
     return "ok"
 
 @default_api.put("/account_detail_nominal_tds_tcs/update/")
-async def update_account_detail_nominal_tds_tcs(account_detail_nominal_tds_tcs: Account_detail_nominal_tds_tcs, db: Session = Depends(get_db)):
+async def update_account_detail_nominal_tds_tcs(account_detail_nominal_tds_tcs: Account_detail_nominal_tds_tcs = Depends(Account_detail_nominal_tds_tcs.as_form), db: Session = Depends(get_db)):
     data = account_detail_nominal_tds_tcs.dict()
     id = data['id']
     del data['id']
@@ -512,6 +524,7 @@ async def update_account_detail_nominal_tds_tcs(account_detail_nominal_tds_tcs: 
     return "ok"
 
 
+@as_form
 class Unit_rate_conversion(BaseModel):
     id: int | None = None
     unit_from_id: int
@@ -519,7 +532,7 @@ class Unit_rate_conversion(BaseModel):
     rate_of_conversion: int
 
 @default_api.post("/unit_rate_conversion/create/")
-async def create_unit_rate_conversion(unit_rate_conversion: Unit_rate_conversion, db: Session = Depends(get_db)):
+async def create_unit_rate_conversion(unit_rate_conversion: Unit_rate_conversion = Depends(Unit_rate_conversion.as_form), db: Session = Depends(get_db)):
     data = unit_rate_conversion.dict()
     del data['id']
     columns = ', '.join(data.keys())
@@ -546,7 +559,7 @@ async def delete_unit_rate_conversion(ids: list[int], db: Session = Depends(get_
     return "ok"
 
 @default_api.put("/unit_rate_conversion/update/")
-async def update_unit_rate_conversion(unit_rate_conversion: Unit_rate_conversion, db: Session = Depends(get_db)):
+async def update_unit_rate_conversion(unit_rate_conversion: Unit_rate_conversion = Depends(Unit_rate_conversion.as_form), db: Session = Depends(get_db)):
     data = unit_rate_conversion.dict()
     id = data['id']
     del data['id']
@@ -560,6 +573,7 @@ async def update_unit_rate_conversion(unit_rate_conversion: Unit_rate_conversion
     return "ok"
 
 
+@as_form
 class Account_detail_nominal(BaseModel):
     id: int | None = None
     inventory_value_are_affected: bool
@@ -571,7 +585,7 @@ class Account_detail_nominal(BaseModel):
     account_detail_nominal_tds_tcs_id: int
 
 @default_api.post("/account_detail_nominal/create/")
-async def create_account_detail_nominal(account_detail_nominal: Account_detail_nominal, db: Session = Depends(get_db)):
+async def create_account_detail_nominal(account_detail_nominal: Account_detail_nominal = Depends(Account_detail_nominal.as_form), db: Session = Depends(get_db)):
     data = account_detail_nominal.dict()
     del data['id']
     columns = ', '.join(data.keys())
@@ -598,7 +612,7 @@ async def delete_account_detail_nominal(ids: list[int], db: Session = Depends(ge
     return "ok"
 
 @default_api.put("/account_detail_nominal/update/")
-async def update_account_detail_nominal(account_detail_nominal: Account_detail_nominal, db: Session = Depends(get_db)):
+async def update_account_detail_nominal(account_detail_nominal: Account_detail_nominal = Depends(Account_detail_nominal.as_form), db: Session = Depends(get_db)):
     data = account_detail_nominal.dict()
     id = data['id']
     del data['id']
@@ -612,6 +626,7 @@ async def update_account_detail_nominal(account_detail_nominal: Account_detail_n
     return "ok"
 
 
+@as_form
 class Voucher_type(BaseModel):
     id: int | None = None
     voucher_number_start_from: int
@@ -621,7 +636,7 @@ class Voucher_type(BaseModel):
     prevent_duplicate: bool
 
 @default_api.post("/voucher_type/create/")
-async def create_voucher_type(voucher_type: Voucher_type, db: Session = Depends(get_db)):
+async def create_voucher_type(voucher_type: Voucher_type = Depends(Voucher_type.as_form), db: Session = Depends(get_db)):
     data = voucher_type.dict()
     del data['id']
     columns = ', '.join(data.keys())
@@ -648,7 +663,7 @@ async def delete_voucher_type(ids: list[int], db: Session = Depends(get_db)):
     return "ok"
 
 @default_api.put("/voucher_type/update/")
-async def update_voucher_type(voucher_type: Voucher_type, db: Session = Depends(get_db)):
+async def update_voucher_type(voucher_type: Voucher_type = Depends(Voucher_type.as_form), db: Session = Depends(get_db)):
     data = voucher_type.dict()
     id = data['id']
     del data['id']
@@ -662,6 +677,7 @@ async def update_voucher_type(voucher_type: Voucher_type, db: Session = Depends(
     return "ok"
 
 
+@as_form
 class Account_detail_personal_tax(BaseModel):
     id: int | None = None
     pan: str | None = None
@@ -670,7 +686,7 @@ class Account_detail_personal_tax(BaseModel):
     gst_group: str
 
 @default_api.post("/account_detail_personal_tax/create/")
-async def create_account_detail_personal_tax(account_detail_personal_tax: Account_detail_personal_tax, db: Session = Depends(get_db)):
+async def create_account_detail_personal_tax(account_detail_personal_tax: Account_detail_personal_tax = Depends(Account_detail_personal_tax.as_form), db: Session = Depends(get_db)):
     data = account_detail_personal_tax.dict()
     del data['id']
     columns = ', '.join(data.keys())
@@ -697,7 +713,7 @@ async def delete_account_detail_personal_tax(ids: list[int], db: Session = Depen
     return "ok"
 
 @default_api.put("/account_detail_personal_tax/update/")
-async def update_account_detail_personal_tax(account_detail_personal_tax: Account_detail_personal_tax, db: Session = Depends(get_db)):
+async def update_account_detail_personal_tax(account_detail_personal_tax: Account_detail_personal_tax = Depends(Account_detail_personal_tax.as_form), db: Session = Depends(get_db)):
     data = account_detail_personal_tax.dict()
     id = data['id']
     del data['id']
@@ -711,12 +727,13 @@ async def update_account_detail_personal_tax(account_detail_personal_tax: Accoun
     return "ok"
 
 
+@as_form
 class Tag(BaseModel):
     id: int | None = None
     tag_name: str
 
 @default_api.post("/tag/create/")
-async def create_tag(tag: Tag, db: Session = Depends(get_db)):
+async def create_tag(tag: Tag = Depends(Tag.as_form), db: Session = Depends(get_db)):
     data = tag.dict()
     del data['id']
     columns = ', '.join(data.keys())
@@ -743,7 +760,7 @@ async def delete_tag(ids: list[int], db: Session = Depends(get_db)):
     return "ok"
 
 @default_api.put("/tag/update/")
-async def update_tag(tag: Tag, db: Session = Depends(get_db)):
+async def update_tag(tag: Tag = Depends(Tag.as_form), db: Session = Depends(get_db)):
     data = tag.dict()
     id = data['id']
     del data['id']
@@ -757,13 +774,14 @@ async def update_tag(tag: Tag, db: Session = Depends(get_db)):
     return "ok"
 
 
+@as_form
 class Account_under(BaseModel):
     id: int | None = None
     account_under_name: str
     primary_group: str
 
 @default_api.post("/account_under/create/")
-async def create_account_under(account_under: Account_under, db: Session = Depends(get_db)):
+async def create_account_under(account_under: Account_under = Depends(Account_under.as_form), db: Session = Depends(get_db)):
     data = account_under.dict()
     del data['id']
     columns = ', '.join(data.keys())
@@ -790,7 +808,7 @@ async def delete_account_under(ids: list[int], db: Session = Depends(get_db)):
     return "ok"
 
 @default_api.put("/account_under/update/")
-async def update_account_under(account_under: Account_under, db: Session = Depends(get_db)):
+async def update_account_under(account_under: Account_under = Depends(Account_under.as_form), db: Session = Depends(get_db)):
     data = account_under.dict()
     id = data['id']
     del data['id']
@@ -804,13 +822,14 @@ async def update_account_under(account_under: Account_under, db: Session = Depen
     return "ok"
 
 
+@as_form
 class Unit_rate(BaseModel):
     id: int | None = None
     unit_name: str
     fraction_count: int
 
 @default_api.post("/unit_rate/create/")
-async def create_unit_rate(unit_rate: Unit_rate, db: Session = Depends(get_db)):
+async def create_unit_rate(unit_rate: Unit_rate = Depends(Unit_rate.as_form), db: Session = Depends(get_db)):
     data = unit_rate.dict()
     del data['id']
     columns = ', '.join(data.keys())
@@ -837,7 +856,7 @@ async def delete_unit_rate(ids: list[int], db: Session = Depends(get_db)):
     return "ok"
 
 @default_api.put("/unit_rate/update/")
-async def update_unit_rate(unit_rate: Unit_rate, db: Session = Depends(get_db)):
+async def update_unit_rate(unit_rate: Unit_rate = Depends(Unit_rate.as_form), db: Session = Depends(get_db)):
     data = unit_rate.dict()
     id = data['id']
     del data['id']

@@ -7,3 +7,4 @@ pygraphviz
 eralchemy
 openpyxl
 pandas
+python-multipart
