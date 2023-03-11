@@ -1,5 +1,5 @@
 const account_create_template = document.createElement('template');
-account_create_template.innerHTML = `
+account_create_template.innerHTML = /*html*/`
 <style>
   .account-create-form {
     
@@ -50,28 +50,28 @@ account_create_template.innerHTML = `
 
 </div>`;
 
-class AccountCreateForm extends HTMLElement{
- constructor(){
-     super();
-     this.attachShadow({ mode: 'open'});
-     this.shadowRoot.appendChild(account_create_template.content.cloneNode(true));
+class AccountCreateForm extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(account_create_template.content.cloneNode(true));
     //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
     //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
- } 
+  }
 
- connectedCallback(){
-//    this.h3 = this.getAttribute("name")
-   this.render();
- }
+  connectedCallback() {
+    //    this.h3 = this.getAttribute("name")
+    this.render();
+  }
 
- render(){
-//    this.h3;
- }
+  render() {
+    //    this.h3;
+  }
 }
 window.customElements.define('account-create-form', AccountCreateForm);
 
 const link_tag__all_table_create_template = document.createElement('template');
-link_tag__all_table_create_template.innerHTML = `
+link_tag__all_table_create_template.innerHTML = /*html*/`
 <style>
   .link-tag--all-table-create-form {
     
@@ -102,28 +102,28 @@ link_tag__all_table_create_template.innerHTML = `
 
 </div>`;
 
-class LinkTagAllTableCreateForm extends HTMLElement{
- constructor(){
-     super();
-     this.attachShadow({ mode: 'open'});
-     this.shadowRoot.appendChild(link_tag__all_table_create_template.content.cloneNode(true));
+class LinkTagAllTableCreateForm extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(link_tag__all_table_create_template.content.cloneNode(true));
     //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
     //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
- } 
+  }
 
- connectedCallback(){
-//    this.h3 = this.getAttribute("name")
-   this.render();
- }
+  connectedCallback() {
+    //    this.h3 = this.getAttribute("name")
+    this.render();
+  }
 
- render(){
-//    this.h3;
- }
+  render() {
+    //    this.h3;
+  }
 }
 window.customElements.define('link-tag--all-table-create-form', LinkTagAllTableCreateForm);
 
 const link_inventory__account__voucher_create_template = document.createElement('template');
-link_inventory__account__voucher_create_template.innerHTML = `
+link_inventory__account__voucher_create_template.innerHTML = /*html*/`
 <style>
   .link-inventory--account--voucher-create-form {
     
@@ -158,28 +158,28 @@ link_inventory__account__voucher_create_template.innerHTML = `
 
 </div>`;
 
-class LinkInventoryAccountVoucherCreateForm extends HTMLElement{
- constructor(){
-     super();
-     this.attachShadow({ mode: 'open'});
-     this.shadowRoot.appendChild(link_inventory__account__voucher_create_template.content.cloneNode(true));
+class LinkInventoryAccountVoucherCreateForm extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(link_inventory__account__voucher_create_template.content.cloneNode(true));
     //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
     //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
- } 
+  }
 
- connectedCallback(){
-//    this.h3 = this.getAttribute("name")
-   this.render();
- }
+  connectedCallback() {
+    //    this.h3 = this.getAttribute("name")
+    this.render();
+  }
 
- render(){
-//    this.h3;
- }
+  render() {
+    //    this.h3;
+  }
 }
 window.customElements.define('link-inventory--account--voucher-create-form', LinkInventoryAccountVoucherCreateForm);
 
 const account_detail_nominal_gst_create_template = document.createElement('template');
-account_detail_nominal_gst_create_template.innerHTML = `
+account_detail_nominal_gst_create_template.innerHTML = /*html*/`
 <style>
   .account-detail-nominal-gst-create-form {
     
@@ -234,28 +234,28 @@ account_detail_nominal_gst_create_template.innerHTML = `
 
 </div>`;
 
-class AccountDetailNominalGstCreateForm extends HTMLElement{
- constructor(){
-     super();
-     this.attachShadow({ mode: 'open'});
-     this.shadowRoot.appendChild(account_detail_nominal_gst_create_template.content.cloneNode(true));
+class AccountDetailNominalGstCreateForm extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(account_detail_nominal_gst_create_template.content.cloneNode(true));
     //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
     //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
- } 
+  }
 
- connectedCallback(){
-//    this.h3 = this.getAttribute("name")
-   this.render();
- }
+  connectedCallback() {
+    //    this.h3 = this.getAttribute("name")
+    this.render();
+  }
 
- render(){
-//    this.h3;
- }
+  render() {
+    //    this.h3;
+  }
 }
 window.customElements.define('account-detail-nominal-gst-create-form', AccountDetailNominalGstCreateForm);
 
 const inventory_create_template = document.createElement('template');
-inventory_create_template.innerHTML = `
+inventory_create_template.innerHTML = /*html*/`
 <style>
   .inventory-create-form {
     
@@ -318,28 +318,28 @@ inventory_create_template.innerHTML = `
 
 </div>`;
 
-class InventoryCreateForm extends HTMLElement{
- constructor(){
-     super();
-     this.attachShadow({ mode: 'open'});
-     this.shadowRoot.appendChild(inventory_create_template.content.cloneNode(true));
+class InventoryCreateForm extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(inventory_create_template.content.cloneNode(true));
     //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
     //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
- } 
+  }
 
- connectedCallback(){
-//    this.h3 = this.getAttribute("name")
-   this.render();
- }
+  connectedCallback() {
+    //    this.h3 = this.getAttribute("name")
+    this.render();
+  }
 
- render(){
-//    this.h3;
- }
+  render() {
+    //    this.h3;
+  }
 }
 window.customElements.define('inventory-create-form', InventoryCreateForm);
 
 const voucher_create_template = document.createElement('template');
-voucher_create_template.innerHTML = `
+voucher_create_template.innerHTML = /*html*/`
 <style>
   .voucher-create-form {
     
@@ -374,28 +374,28 @@ voucher_create_template.innerHTML = `
 
 </div>`;
 
-class VoucherCreateForm extends HTMLElement{
- constructor(){
-     super();
-     this.attachShadow({ mode: 'open'});
-     this.shadowRoot.appendChild(voucher_create_template.content.cloneNode(true));
+class VoucherCreateForm extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(voucher_create_template.content.cloneNode(true));
     //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
     //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
- } 
+  }
 
- connectedCallback(){
-//    this.h3 = this.getAttribute("name")
-   this.render();
- }
+  connectedCallback() {
+    //    this.h3 = this.getAttribute("name")
+    this.render();
+  }
 
- render(){
-//    this.h3;
- }
+  render() {
+    //    this.h3;
+  }
 }
 window.customElements.define('voucher-create-form', VoucherCreateForm);
 
 const transaction_entry_create_template = document.createElement('template');
-transaction_entry_create_template.innerHTML = `
+transaction_entry_create_template.innerHTML = /*html*/`
 <style>
   .transaction-entry-create-form {
     
@@ -442,28 +442,28 @@ transaction_entry_create_template.innerHTML = `
 
 </div>`;
 
-class TransactionEntryCreateForm extends HTMLElement{
- constructor(){
-     super();
-     this.attachShadow({ mode: 'open'});
-     this.shadowRoot.appendChild(transaction_entry_create_template.content.cloneNode(true));
+class TransactionEntryCreateForm extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(transaction_entry_create_template.content.cloneNode(true));
     //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
     //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
- } 
+  }
 
- connectedCallback(){
-//    this.h3 = this.getAttribute("name")
-   this.render();
- }
+  connectedCallback() {
+    //    this.h3 = this.getAttribute("name")
+    this.render();
+  }
 
- render(){
-//    this.h3;
- }
+  render() {
+    //    this.h3;
+  }
 }
 window.customElements.define('transaction-entry-create-form', TransactionEntryCreateForm);
 
 const inventory_under_create_template = document.createElement('template');
-inventory_under_create_template.innerHTML = `
+inventory_under_create_template.innerHTML = /*html*/`
 <style>
   .inventory-under-create-form {
     
@@ -486,28 +486,28 @@ inventory_under_create_template.innerHTML = `
 
 </div>`;
 
-class InventoryUnderCreateForm extends HTMLElement{
- constructor(){
-     super();
-     this.attachShadow({ mode: 'open'});
-     this.shadowRoot.appendChild(inventory_under_create_template.content.cloneNode(true));
+class InventoryUnderCreateForm extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(inventory_under_create_template.content.cloneNode(true));
     //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
     //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
- } 
+  }
 
- connectedCallback(){
-//    this.h3 = this.getAttribute("name")
-   this.render();
- }
+  connectedCallback() {
+    //    this.h3 = this.getAttribute("name")
+    this.render();
+  }
 
- render(){
-//    this.h3;
- }
+  render() {
+    //    this.h3;
+  }
 }
 window.customElements.define('inventory-under-create-form', InventoryUnderCreateForm);
 
 const account_general_option_create_template = document.createElement('template');
-account_general_option_create_template.innerHTML = `
+account_general_option_create_template.innerHTML = /*html*/`
 <style>
   .account-general-option-create-form {
     
@@ -538,28 +538,28 @@ account_general_option_create_template.innerHTML = `
 
 </div>`;
 
-class AccountGeneralOptionCreateForm extends HTMLElement{
- constructor(){
-     super();
-     this.attachShadow({ mode: 'open'});
-     this.shadowRoot.appendChild(account_general_option_create_template.content.cloneNode(true));
+class AccountGeneralOptionCreateForm extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(account_general_option_create_template.content.cloneNode(true));
     //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
     //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
- } 
+  }
 
- connectedCallback(){
-//    this.h3 = this.getAttribute("name")
-   this.render();
- }
+  connectedCallback() {
+    //    this.h3 = this.getAttribute("name")
+    this.render();
+  }
 
- render(){
-//    this.h3;
- }
+  render() {
+    //    this.h3;
+  }
 }
 window.customElements.define('account-general-option-create-form', AccountGeneralOptionCreateForm);
 
 const account_detail_nominal_tds_tcs_create_template = document.createElement('template');
-account_detail_nominal_tds_tcs_create_template.innerHTML = `
+account_detail_nominal_tds_tcs_create_template.innerHTML = /*html*/`
 <style>
   .account-detail-nominal-tds-tcs-create-form {
     
@@ -602,28 +602,28 @@ account_detail_nominal_tds_tcs_create_template.innerHTML = `
 
 </div>`;
 
-class AccountDetailNominalTdsTcsCreateForm extends HTMLElement{
- constructor(){
-     super();
-     this.attachShadow({ mode: 'open'});
-     this.shadowRoot.appendChild(account_detail_nominal_tds_tcs_create_template.content.cloneNode(true));
+class AccountDetailNominalTdsTcsCreateForm extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(account_detail_nominal_tds_tcs_create_template.content.cloneNode(true));
     //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
     //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
- } 
+  }
 
- connectedCallback(){
-//    this.h3 = this.getAttribute("name")
-   this.render();
- }
+  connectedCallback() {
+    //    this.h3 = this.getAttribute("name")
+    this.render();
+  }
 
- render(){
-//    this.h3;
- }
+  render() {
+    //    this.h3;
+  }
 }
 window.customElements.define('account-detail-nominal-tds-tcs-create-form', AccountDetailNominalTdsTcsCreateForm);
 
 const unit_rate_conversion_create_template = document.createElement('template');
-unit_rate_conversion_create_template.innerHTML = `
+unit_rate_conversion_create_template.innerHTML = /*html*/`
 <style>
   .unit-rate-conversion-create-form {
     
@@ -654,28 +654,28 @@ unit_rate_conversion_create_template.innerHTML = `
 
 </div>`;
 
-class UnitRateConversionCreateForm extends HTMLElement{
- constructor(){
-     super();
-     this.attachShadow({ mode: 'open'});
-     this.shadowRoot.appendChild(unit_rate_conversion_create_template.content.cloneNode(true));
+class UnitRateConversionCreateForm extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(unit_rate_conversion_create_template.content.cloneNode(true));
     //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
     //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
- } 
+  }
 
- connectedCallback(){
-//    this.h3 = this.getAttribute("name")
-   this.render();
- }
+  connectedCallback() {
+    //    this.h3 = this.getAttribute("name")
+    this.render();
+  }
 
- render(){
-//    this.h3;
- }
+  render() {
+    //    this.h3;
+  }
 }
 window.customElements.define('unit-rate-conversion-create-form', UnitRateConversionCreateForm);
 
 const account_detail_nominal_create_template = document.createElement('template');
-account_detail_nominal_create_template.innerHTML = `
+account_detail_nominal_create_template.innerHTML = /*html*/`
 <style>
   .account-detail-nominal-create-form {
     
@@ -722,28 +722,28 @@ account_detail_nominal_create_template.innerHTML = `
 
 </div>`;
 
-class AccountDetailNominalCreateForm extends HTMLElement{
- constructor(){
-     super();
-     this.attachShadow({ mode: 'open'});
-     this.shadowRoot.appendChild(account_detail_nominal_create_template.content.cloneNode(true));
+class AccountDetailNominalCreateForm extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(account_detail_nominal_create_template.content.cloneNode(true));
     //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
     //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
- } 
+  }
 
- connectedCallback(){
-//    this.h3 = this.getAttribute("name")
-   this.render();
- }
+  connectedCallback() {
+    //    this.h3 = this.getAttribute("name")
+    this.render();
+  }
 
- render(){
-//    this.h3;
- }
+  render() {
+    //    this.h3;
+  }
 }
 window.customElements.define('account-detail-nominal-create-form', AccountDetailNominalCreateForm);
 
 const voucher_type_create_template = document.createElement('template');
-voucher_type_create_template.innerHTML = `
+voucher_type_create_template.innerHTML = /*html*/`
 <style>
   .voucher-type-create-form {
     
@@ -782,28 +782,28 @@ voucher_type_create_template.innerHTML = `
 
 </div>`;
 
-class VoucherTypeCreateForm extends HTMLElement{
- constructor(){
-     super();
-     this.attachShadow({ mode: 'open'});
-     this.shadowRoot.appendChild(voucher_type_create_template.content.cloneNode(true));
+class VoucherTypeCreateForm extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(voucher_type_create_template.content.cloneNode(true));
     //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
     //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
- } 
+  }
 
- connectedCallback(){
-//    this.h3 = this.getAttribute("name")
-   this.render();
- }
+  connectedCallback() {
+    //    this.h3 = this.getAttribute("name")
+    this.render();
+  }
 
- render(){
-//    this.h3;
- }
+  render() {
+    //    this.h3;
+  }
 }
 window.customElements.define('voucher-type-create-form', VoucherTypeCreateForm);
 
 const account_detail_personal_tax_create_template = document.createElement('template');
-account_detail_personal_tax_create_template.innerHTML = `
+account_detail_personal_tax_create_template.innerHTML = /*html*/`
 <style>
   .account-detail-personal-tax-create-form {
     
@@ -838,28 +838,28 @@ account_detail_personal_tax_create_template.innerHTML = `
 
 </div>`;
 
-class AccountDetailPersonalTaxCreateForm extends HTMLElement{
- constructor(){
-     super();
-     this.attachShadow({ mode: 'open'});
-     this.shadowRoot.appendChild(account_detail_personal_tax_create_template.content.cloneNode(true));
+class AccountDetailPersonalTaxCreateForm extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(account_detail_personal_tax_create_template.content.cloneNode(true));
     //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
     //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
- } 
+  }
 
- connectedCallback(){
-//    this.h3 = this.getAttribute("name")
-   this.render();
- }
+  connectedCallback() {
+    //    this.h3 = this.getAttribute("name")
+    this.render();
+  }
 
- render(){
-//    this.h3;
- }
+  render() {
+    //    this.h3;
+  }
 }
 window.customElements.define('account-detail-personal-tax-create-form', AccountDetailPersonalTaxCreateForm);
 
 const tag_create_template = document.createElement('template');
-tag_create_template.innerHTML = `
+tag_create_template.innerHTML = /*html*/`
 <style>
   .tag-create-form {
     
@@ -882,28 +882,28 @@ tag_create_template.innerHTML = `
 
 </div>`;
 
-class TagCreateForm extends HTMLElement{
- constructor(){
-     super();
-     this.attachShadow({ mode: 'open'});
-     this.shadowRoot.appendChild(tag_create_template.content.cloneNode(true));
+class TagCreateForm extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(tag_create_template.content.cloneNode(true));
     //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
     //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
- } 
+  }
 
- connectedCallback(){
-//    this.h3 = this.getAttribute("name")
-   this.render();
- }
+  connectedCallback() {
+    //    this.h3 = this.getAttribute("name")
+    this.render();
+  }
 
- render(){
-//    this.h3;
- }
+  render() {
+    //    this.h3;
+  }
 }
 window.customElements.define('tag-create-form', TagCreateForm);
 
 const account_under_create_template = document.createElement('template');
-account_under_create_template.innerHTML = `
+account_under_create_template.innerHTML = /*html*/`
 <style>
   .account-under-create-form {
     
@@ -930,28 +930,28 @@ account_under_create_template.innerHTML = `
 
 </div>`;
 
-class AccountUnderCreateForm extends HTMLElement{
- constructor(){
-     super();
-     this.attachShadow({ mode: 'open'});
-     this.shadowRoot.appendChild(account_under_create_template.content.cloneNode(true));
+class AccountUnderCreateForm extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(account_under_create_template.content.cloneNode(true));
     //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
     //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
- } 
+  }
 
- connectedCallback(){
-//    this.h3 = this.getAttribute("name")
-   this.render();
- }
+  connectedCallback() {
+    //    this.h3 = this.getAttribute("name")
+    this.render();
+  }
 
- render(){
-//    this.h3;
- }
+  render() {
+    //    this.h3;
+  }
 }
 window.customElements.define('account-under-create-form', AccountUnderCreateForm);
 
 const unit_rate_create_template = document.createElement('template');
-unit_rate_create_template.innerHTML = `
+unit_rate_create_template.innerHTML = /*html*/`
 <style>
   .unit-rate-create-form {
     
@@ -978,23 +978,23 @@ unit_rate_create_template.innerHTML = `
 
 </div>`;
 
-class UnitRateCreateForm extends HTMLElement{
- constructor(){
-     super();
-     this.attachShadow({ mode: 'open'});
-     this.shadowRoot.appendChild(unit_rate_create_template.content.cloneNode(true));
+class UnitRateCreateForm extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(unit_rate_create_template.content.cloneNode(true));
     //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
     //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
- } 
+  }
 
- connectedCallback(){
-//    this.h3 = this.getAttribute("name")
-   this.render();
- }
+  connectedCallback() {
+    //    this.h3 = this.getAttribute("name")
+    this.render();
+  }
 
- render(){
-//    this.h3;
- }
+  render() {
+    //    this.h3;
+  }
 }
 window.customElements.define('unit-rate-create-form', UnitRateCreateForm);
 

@@ -51,7 +51,7 @@ class BaseAutoGen():
             # os.removedirs(self.auto_gen_path)
             self.create_auto_gen_dir()
             return
-        print('unable to clean : auto gen not found')
+        raise Exception('unable to clean : auto gen not found')
 
     def get_code(self, name: str):
         code_path = f'tools/{self.dir_name}_generator/cache_code/{name}'

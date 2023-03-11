@@ -18,7 +18,7 @@ class AutoGenServer(BaseAutoGen):
         self.create_file('database.py', self.get_code('database.code.py'))
         self.create_file('utilities.py', self.get_code('utilities.code.py'))
         # data = self.model_dict[6][0]
-        pp.pprint(self.model_dict)
+        # pp.pprint(self.model_dict)
         contentEditor = ContentEditorServer(self)
         # print(self.model_dict)
         contentEditor.add_dependency_FastApi_Router_BaseModel()

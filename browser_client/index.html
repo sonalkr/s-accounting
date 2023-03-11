@@ -7,13 +7,28 @@
     <title>Advance Accounting</title>
 </head>
 <body>
-    <unit-rate-create-form></unit-rate-create-form>
-
-    <account-create-form></account-create-form>
-    <transaction-entry-create-form></transaction-entry-create-form>
-    <account-detail-nominal-gst-create-form></account-detail-nominal-gst-create-form>
+    <container-element>
+        <nav-element>
+            <page-element name="Unit">
+                <unit-rate-create-form></unit-rate-create-form>
+            </page-element>
+            <page-element name="Account">
+                <account-create-form></account-create-form>
+            </page-element>
+            <page-element name="Transaction">
+                <transaction-entry-create-form></transaction-entry-create-form>
+            </page-element>
+            <page-element name="Account Detail">
+                <account-detail-nominal-gst-create-form></account-detail-nominal-gst-create-form>
+            </page-element>
+        </nav-element>
+    </container-element>
     
     <script src="./auto_gen/test.ts"></script>
+    <script src="./auto_gen/container.js"></script>
+    <script src="./auto_gen/nav.js"></script>
+    <script src="./auto_gen/notification.js"></script>
+    <script src="./auto_gen/page.js"></script>
     <script src="./auto_gen/script.js"></script>
 </body>
 </html>
