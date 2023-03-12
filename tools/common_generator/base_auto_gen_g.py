@@ -1,3 +1,4 @@
+from itertools import combinations
 import os
 import pprint
 
@@ -15,6 +16,7 @@ class BaseAutoGen():
         self.extension_name = extension_name
         self.auto_gen_path = f'{dir_name}/{auto_gen_dir_name}'
         self.model_dict = sql_to_dict()
+        self.model_dict_com = self.get_model_dict_com()
 
     def gen_server_app(self):
 
@@ -63,5 +65,66 @@ class BaseAutoGen():
                 return data[0]
             raise Exception(f"model_name not found{model_name}")
 
+    def get_model_dict_com(self):
+        result = []
+        for model in self.model_dict:
+            d = []
+            d.append(model[0]["model_name"])
+            for r in model[0]["relationship"]:
+                d.append(r["model_name"])
+            for r in model[0]["ref_relationship"]:
+                d.append(r["model_name"])
+
+            for i in range(1, len(d)):
+                new_dic = {}
+                models = {}
+                fields = []
+                f_name = []
+
+                com_list = list(combinations(d, i+1))
+                for c in com_list:
+                    c = list(c)
+                    if not c.__contains__(model[0]["model_name"]):
+                        continue
+
+                    with_out_f = c[1:]
+                    for model2 in self.model_dict:
+                        if c[0] == model2[0]["model_name"]:
+
+                            for f in model2[0]["fields"]:
+
+                                if c.__contains__(f["name"][:-3]):
+                                    continue
+                                # print(f["name"])
+                                if f_name.__contains__(f["name"]):
+                                    continue
+                                fields.append(f)
+                                f_name.append(f["name"])
+
+                        if with_out_f.__contains__(model2[0]["model_name"]):
+                            for f in model2[0]["fields"]:
+
+                                if f["name"] == model[0]["model_name"]+"_id":
+                                    continue
+                                if f_name.__contains__(f["name"]):
+                                    continue
+                                fields.append(f)
+                                f_name.append(f["name"])
+                            pass
+
+                    for model2 in self.model_dict:
+                        if not c.__contains__(model2[0]["model_name"]):
+                            continue
+
+                        # new_dic[model2[0]["model_name"]] = model2[0]
+                        models[model2[0]["model_name"]] = model2[0]
+
+                    new_dic["com"] = c
+                    new_dic["models"] = models
+                    new_dic["model_name"] = "_".join(c)
+                    new_dic["fields"] = fields
+
+                result.append(new_dic)
+        return result
 # tools/browser_generator/cache_code
 # tools/browser_client_generator/cache_code/index.code.ts

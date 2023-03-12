@@ -1,4 +1,5 @@
 from tools.common_generator.base_content_editor_g import BaseContentEditor
+from itertools import combinations
 
 
 class ContentEditorServer(BaseContentEditor):
@@ -6,7 +7,7 @@ class ContentEditorServer(BaseContentEditor):
         super().__init__(auto_gen)
 
     # adding dependency
-    def add_dependency_FastApi_Router_BaseModel(self, router_name='default_api'):
+    def add_dependency_FastApi_Router_BaseModel(self):
         self.add_to_content_nl(
             'from fastapi import APIRouter, Depends, HTTPException, Form')
         self.add_to_content_nl('from pydantic import BaseModel')
@@ -17,7 +18,8 @@ class ContentEditorServer(BaseContentEditor):
         self.add_to_content_nl(
             'from server_fastapi.auto_gen.database import get_db')
         self.add_nl()
-        self.add_to_content_nl(f'{router_name} = APIRouter()')
+        self.add_to_content_nl(f'default_api = APIRouter()')
+        self.add_to_content_nl(f'combination_api = APIRouter()')
 
         self.add_nl()
         # self.add_to_content_nl('def as_form(cls):')
@@ -29,6 +31,7 @@ class ContentEditorServer(BaseContentEditor):
 
     def add_model(self, model: dict):
         self.add_default_model(model=model)
+        pass
 
     def add_default_model(self, model: dict):
         data: list = model['fields']
@@ -59,10 +62,12 @@ class ContentEditorServer(BaseContentEditor):
 
     def add_api(self, model, router_name='default_api'):
         self.add_default_api(model, router_name)
+        pass
 
     def add_default_api(self, model, router_name='default_api'):
         self.add_create_api(model=model, router_name=router_name)
         self.add_get_api(model=model, router_name=router_name)
+        self.add_get_one_api(model=model, router_name=router_name)
         self.add_delete_api(model=model, router_name=router_name)
         self.add_update_api(model=model, router_name=router_name)
 
@@ -151,6 +156,18 @@ class ContentEditorServer(BaseContentEditor):
 
         self.add_nl()
 
+    def add_get_one_api(self, model, router_name='default_api'):
+        self._add_api_function_head_get_one(
+            model, router_name, function_name='get', method='get')
+        model_name = model["model_name"]
+        self.add_tab()
+        self.add_to_content_nl(
+            f'rs = db.execute(f"SELECT * FROM {model_name} WHERE id = {{id}};").all()')
+        self.add_tab()
+        self.add_to_content_nl("return rs")
+
+        self.add_nl()
+
     def _add_api_function_head_create(self, model, router_name, function_name, method):
         self.add_to_content_nl(
             f'@{router_name}.{method}("/{model["model_name"]}/{function_name}/")')
@@ -162,6 +179,12 @@ class ContentEditorServer(BaseContentEditor):
             f'@{router_name}.{method}("/{model["model_name"]}/{function_name}/")')
         self.add_to_content_nl(
             f'async def {function_name}_{model["model_name"]}(db: Session = Depends(get_db)):')
+
+    def _add_api_function_head_get_one(self, model, router_name, function_name, method):
+        self.add_to_content_nl(
+            f'@{router_name}.{method}("/{model["model_name"]}/{function_name}/{{id}}")')
+        self.add_to_content_nl(
+            f'async def {function_name}_{model["model_name"]}_one(id: int, db: Session = Depends(get_db)):')
 
     def add_delete_api(self, model, router_name='default_api'):
         self._add_api_function_head_delete(
@@ -193,3 +216,38 @@ class ContentEditorServer(BaseContentEditor):
             f'@{router_name}.{method}("/{model["model_name"]}/{function_name}/")')
         self.add_to_content_nl(
             f'async def {function_name}_{model["model_name"]}(ids: list[int], db: Session = Depends(get_db)):')
+
+    def add_combination_api(self, model, router_name='combination_api'):
+
+        self.add_combination_create_api(
+            model=model, router_name=router_name)
+
+    def add_combination_create_api(self, model, router_name='combination_api'):
+        self._add_api_function_head_create(
+            model, router_name, function_name='create', method='post')
+
+        model_name = model["model_name"]
+
+        self.add_tab()
+        self.add_to_content_nl("data = "+model_name+".dict()")
+        self.add_tab()
+        self.add_to_content_nl("del data['id']")
+        self.add_tab()
+        self.add_to_content_nl("columns = ', '.join(data.keys())")
+        self.add_tab()
+        self.add_to_content_nl("placeholders = ':'+', :'.join(data.keys())")
+        self.add_tab()
+        self.add_to_content_nl(
+            "query = f'INSERT INTO "+model_name + "({columns}) VALUES ({placeholders});'")
+        # self.add_tab()
+        # self.add_to_content_nl("print(query)")
+
+        self.add_tab()
+        self.add_to_content_nl('db.execute(query, data)')
+        self.add_tab()
+        self.add_to_content_nl('db.commit()')
+        self.add_tab()
+        self.add_to_content_nl('return "ok"')
+
+        self.add_nl()
+        self.add_nl()

@@ -1,3 +1,4 @@
+import json
 from tools.server_fastapi_generator.ContentEditorServer_g import ContentEditorServer
 from tools.common_generator.base_auto_gen_g import BaseAutoGen, pp
 
@@ -19,13 +20,21 @@ class AutoGenServer(BaseAutoGen):
         self.create_file('utilities.py', self.get_code('utilities.code.py'))
         # data = self.model_dict[6][0]
         # pp.pprint(self.model_dict)
+        with open('model_dumps.json', 'w') as f:
+            f.writelines(json.dumps(self.model_dict, indent=4))
+        with open('model_dumps_com.json', 'w') as f:
+            f.writelines(json.dumps(self.model_dict_com, indent=4))
         contentEditor = ContentEditorServer(self)
         # print(self.model_dict)
         contentEditor.add_dependency_FastApi_Router_BaseModel()
         for data in self.model_dict:
             data = data[0]
             contentEditor.add_model(data)
-            contentEditor.add_api(model=data)
+            contentEditor.add_default_api(model=data)
+
+        for data in self.model_dict_com:
+            contentEditor.add_model(data)
+            contentEditor.add_combination_api(data)
 
         self.create_file('__init__.py', contentEditor.content)
         pass

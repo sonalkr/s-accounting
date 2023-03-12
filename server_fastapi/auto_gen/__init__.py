@@ -6,6 +6,7 @@ from server_fastapi.auto_gen.utilities import as_form
 from server_fastapi.auto_gen.database import get_db
 
 default_api = APIRouter()
+combination_api = APIRouter()
 
 
 @as_form
@@ -35,6 +36,11 @@ async def create_account(account: Account = Depends(Account.as_form), db: Sessio
 @default_api.get("/account/get/")
 async def get_account(db: Session = Depends(get_db)):
     rs = db.execute("SELECT * FROM account;").all()
+    return rs
+
+@default_api.get("/account/get/{id}")
+async def get_account_one(id: int, db: Session = Depends(get_db)):
+    rs = db.execute(f"SELECT * FROM account WHERE id = {id};").all()
     return rs
 
 @default_api.delete("/account/delete/")
@@ -84,6 +90,11 @@ async def create_link_tag__all_table(link_tag__all_table: Link_tag__all_table = 
 @default_api.get("/link_tag__all_table/get/")
 async def get_link_tag__all_table(db: Session = Depends(get_db)):
     rs = db.execute("SELECT * FROM link_tag__all_table;").all()
+    return rs
+
+@default_api.get("/link_tag__all_table/get/{id}")
+async def get_link_tag__all_table_one(id: int, db: Session = Depends(get_db)):
+    rs = db.execute(f"SELECT * FROM link_tag__all_table WHERE id = {id};").all()
     return rs
 
 @default_api.delete("/link_tag__all_table/delete/")
@@ -136,6 +147,11 @@ async def get_link_inventory__account__voucher(db: Session = Depends(get_db)):
     rs = db.execute("SELECT * FROM link_inventory__account__voucher;").all()
     return rs
 
+@default_api.get("/link_inventory__account__voucher/get/{id}")
+async def get_link_inventory__account__voucher_one(id: int, db: Session = Depends(get_db)):
+    rs = db.execute(f"SELECT * FROM link_inventory__account__voucher WHERE id = {id};").all()
+    return rs
+
 @default_api.delete("/link_inventory__account__voucher/delete/")
 async def delete_link_inventory__account__voucher(ids: list[int], db: Session = Depends(get_db)):
     for id in ids:
@@ -184,6 +200,11 @@ async def create_transaction_single(transaction_single: Transaction_single = Dep
 @default_api.get("/transaction_single/get/")
 async def get_transaction_single(db: Session = Depends(get_db)):
     rs = db.execute("SELECT * FROM transaction_single;").all()
+    return rs
+
+@default_api.get("/transaction_single/get/{id}")
+async def get_transaction_single_one(id: int, db: Session = Depends(get_db)):
+    rs = db.execute(f"SELECT * FROM transaction_single WHERE id = {id};").all()
     return rs
 
 @default_api.delete("/transaction_single/delete/")
@@ -239,6 +260,11 @@ async def create_account_detail_nominal_gst(account_detail_nominal_gst: Account_
 @default_api.get("/account_detail_nominal_gst/get/")
 async def get_account_detail_nominal_gst(db: Session = Depends(get_db)):
     rs = db.execute("SELECT * FROM account_detail_nominal_gst;").all()
+    return rs
+
+@default_api.get("/account_detail_nominal_gst/get/{id}")
+async def get_account_detail_nominal_gst_one(id: int, db: Session = Depends(get_db)):
+    rs = db.execute(f"SELECT * FROM account_detail_nominal_gst WHERE id = {id};").all()
     return rs
 
 @default_api.delete("/account_detail_nominal_gst/delete/")
@@ -298,6 +324,11 @@ async def get_inventory(db: Session = Depends(get_db)):
     rs = db.execute("SELECT * FROM inventory;").all()
     return rs
 
+@default_api.get("/inventory/get/{id}")
+async def get_inventory_one(id: int, db: Session = Depends(get_db)):
+    rs = db.execute(f"SELECT * FROM inventory WHERE id = {id};").all()
+    return rs
+
 @default_api.delete("/inventory/delete/")
 async def delete_inventory(ids: list[int], db: Session = Depends(get_db)):
     for id in ids:
@@ -346,6 +377,11 @@ async def create_voucher(voucher: Voucher = Depends(Voucher.as_form), db: Sessio
 @default_api.get("/voucher/get/")
 async def get_voucher(db: Session = Depends(get_db)):
     rs = db.execute("SELECT * FROM voucher;").all()
+    return rs
+
+@default_api.get("/voucher/get/{id}")
+async def get_voucher_one(id: int, db: Session = Depends(get_db)):
+    rs = db.execute(f"SELECT * FROM voucher WHERE id = {id};").all()
     return rs
 
 @default_api.delete("/voucher/delete/")
@@ -398,6 +434,11 @@ async def get_transaction_entry(db: Session = Depends(get_db)):
     rs = db.execute("SELECT * FROM transaction_entry;").all()
     return rs
 
+@default_api.get("/transaction_entry/get/{id}")
+async def get_transaction_entry_one(id: int, db: Session = Depends(get_db)):
+    rs = db.execute(f"SELECT * FROM transaction_entry WHERE id = {id};").all()
+    return rs
+
 @default_api.delete("/transaction_entry/delete/")
 async def delete_transaction_entry(ids: list[int], db: Session = Depends(get_db)):
     for id in ids:
@@ -443,6 +484,11 @@ async def create_inventory_under(inventory_under: Inventory_under = Depends(Inve
 @default_api.get("/inventory_under/get/")
 async def get_inventory_under(db: Session = Depends(get_db)):
     rs = db.execute("SELECT * FROM inventory_under;").all()
+    return rs
+
+@default_api.get("/inventory_under/get/{id}")
+async def get_inventory_under_one(id: int, db: Session = Depends(get_db)):
+    rs = db.execute(f"SELECT * FROM inventory_under WHERE id = {id};").all()
     return rs
 
 @default_api.delete("/inventory_under/delete/")
@@ -492,6 +538,11 @@ async def create_account_general_option(account_general_option: Account_general_
 @default_api.get("/account_general_option/get/")
 async def get_account_general_option(db: Session = Depends(get_db)):
     rs = db.execute("SELECT * FROM account_general_option;").all()
+    return rs
+
+@default_api.get("/account_general_option/get/{id}")
+async def get_account_general_option_one(id: int, db: Session = Depends(get_db)):
+    rs = db.execute(f"SELECT * FROM account_general_option WHERE id = {id};").all()
     return rs
 
 @default_api.delete("/account_general_option/delete/")
@@ -546,6 +597,11 @@ async def get_account_detail_nominal_tds_tcs(db: Session = Depends(get_db)):
     rs = db.execute("SELECT * FROM account_detail_nominal_tds_tcs;").all()
     return rs
 
+@default_api.get("/account_detail_nominal_tds_tcs/get/{id}")
+async def get_account_detail_nominal_tds_tcs_one(id: int, db: Session = Depends(get_db)):
+    rs = db.execute(f"SELECT * FROM account_detail_nominal_tds_tcs WHERE id = {id};").all()
+    return rs
+
 @default_api.delete("/account_detail_nominal_tds_tcs/delete/")
 async def delete_account_detail_nominal_tds_tcs(ids: list[int], db: Session = Depends(get_db)):
     for id in ids:
@@ -593,6 +649,11 @@ async def create_unit_rate_conversion(unit_rate_conversion: Unit_rate_conversion
 @default_api.get("/unit_rate_conversion/get/")
 async def get_unit_rate_conversion(db: Session = Depends(get_db)):
     rs = db.execute("SELECT * FROM unit_rate_conversion;").all()
+    return rs
+
+@default_api.get("/unit_rate_conversion/get/{id}")
+async def get_unit_rate_conversion_one(id: int, db: Session = Depends(get_db)):
+    rs = db.execute(f"SELECT * FROM unit_rate_conversion WHERE id = {id};").all()
     return rs
 
 @default_api.delete("/unit_rate_conversion/delete/")
@@ -648,6 +709,11 @@ async def get_account_detail_nominal(db: Session = Depends(get_db)):
     rs = db.execute("SELECT * FROM account_detail_nominal;").all()
     return rs
 
+@default_api.get("/account_detail_nominal/get/{id}")
+async def get_account_detail_nominal_one(id: int, db: Session = Depends(get_db)):
+    rs = db.execute(f"SELECT * FROM account_detail_nominal WHERE id = {id};").all()
+    return rs
+
 @default_api.delete("/account_detail_nominal/delete/")
 async def delete_account_detail_nominal(ids: list[int], db: Session = Depends(get_db)):
     for id in ids:
@@ -697,6 +763,11 @@ async def create_voucher_type(voucher_type: Voucher_type = Depends(Voucher_type.
 @default_api.get("/voucher_type/get/")
 async def get_voucher_type(db: Session = Depends(get_db)):
     rs = db.execute("SELECT * FROM voucher_type;").all()
+    return rs
+
+@default_api.get("/voucher_type/get/{id}")
+async def get_voucher_type_one(id: int, db: Session = Depends(get_db)):
+    rs = db.execute(f"SELECT * FROM voucher_type WHERE id = {id};").all()
     return rs
 
 @default_api.delete("/voucher_type/delete/")
@@ -749,6 +820,11 @@ async def get_account_detail_personal_tax(db: Session = Depends(get_db)):
     rs = db.execute("SELECT * FROM account_detail_personal_tax;").all()
     return rs
 
+@default_api.get("/account_detail_personal_tax/get/{id}")
+async def get_account_detail_personal_tax_one(id: int, db: Session = Depends(get_db)):
+    rs = db.execute(f"SELECT * FROM account_detail_personal_tax WHERE id = {id};").all()
+    return rs
+
 @default_api.delete("/account_detail_personal_tax/delete/")
 async def delete_account_detail_personal_tax(ids: list[int], db: Session = Depends(get_db)):
     for id in ids:
@@ -794,6 +870,11 @@ async def create_tag(tag: Tag = Depends(Tag.as_form), db: Session = Depends(get_
 @default_api.get("/tag/get/")
 async def get_tag(db: Session = Depends(get_db)):
     rs = db.execute("SELECT * FROM tag;").all()
+    return rs
+
+@default_api.get("/tag/get/{id}")
+async def get_tag_one(id: int, db: Session = Depends(get_db)):
+    rs = db.execute(f"SELECT * FROM tag WHERE id = {id};").all()
     return rs
 
 @default_api.delete("/tag/delete/")
@@ -844,6 +925,11 @@ async def get_account_under(db: Session = Depends(get_db)):
     rs = db.execute("SELECT * FROM account_under;").all()
     return rs
 
+@default_api.get("/account_under/get/{id}")
+async def get_account_under_one(id: int, db: Session = Depends(get_db)):
+    rs = db.execute(f"SELECT * FROM account_under WHERE id = {id};").all()
+    return rs
+
 @default_api.delete("/account_under/delete/")
 async def delete_account_under(ids: list[int], db: Session = Depends(get_db)):
     for id in ids:
@@ -892,6 +978,11 @@ async def get_unit_rate(db: Session = Depends(get_db)):
     rs = db.execute("SELECT * FROM unit_rate;").all()
     return rs
 
+@default_api.get("/unit_rate/get/{id}")
+async def get_unit_rate_one(id: int, db: Session = Depends(get_db)):
+    rs = db.execute(f"SELECT * FROM unit_rate WHERE id = {id};").all()
+    return rs
+
 @default_api.delete("/unit_rate/delete/")
 async def delete_unit_rate(ids: list[int], db: Session = Depends(get_db)):
     for id in ids:
@@ -913,6 +1004,1207 @@ async def update_unit_rate(unit_rate: Unit_rate = Depends(Unit_rate.as_form), db
     query = query + ' WHERE id = ' + str(id) + ';'
     print(query)
     db.execute(query)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Account_transaction_single(BaseModel):
+    id: int | None = None
+    account_name: str
+    alias: str | None = None
+    opening_amount: float
+    note: str | None = None
+    account_general_option_id: int
+    account_detail_nominal_id: int
+    account_detail_personal_tax_id: int
+    account_under_name: str
+    primary_group: str
+    account_under_id: int
+    bill_by_bill: bool | None = None
+    credit_preiod: int | None = None
+    cost_center: bool | None = None
+    inventory_value_are_affected: bool
+    type_of_ledger: str
+    fraction_value: int | None = None
+    is_gst_applicable: str
+    account_detail_nominal_gst_id: int
+    is_tds_applicable: str
+    account_detail_nominal_tds_tcs_id: int
+    pan: str | None = None
+    it_group: str
+    gst_no: str | None = None
+    gst_group: str
+    inventory_id: int | None = None
+    transaction_entry_id: int
+    voucher_id: int
+    amount_dr: float | None = None
+    amount_cr: float | None = None
+
+@combination_api.post("/account_transaction_single/create/")
+async def create_account_transaction_single(account_transaction_single: Account_transaction_single = Depends(Account_transaction_single.as_form), db: Session = Depends(get_db)):
+    data = account_transaction_single.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO account_transaction_single({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Account_link_inventory__account__voucher_transaction_single(BaseModel):
+    id: int | None = None
+    account_name: str
+    alias: str | None = None
+    opening_amount: float
+    note: str | None = None
+    account_detail_nominal_id: int
+    account_detail_personal_tax_id: int
+    bill_by_bill: bool | None = None
+    credit_preiod: int | None = None
+    cost_center: bool | None = None
+    account_under_name: str
+    primary_group: str
+    account_general_option_id: int
+    inventory_value_are_affected: bool
+    type_of_ledger: str
+    fraction_value: int | None = None
+    is_gst_applicable: str
+    account_detail_nominal_gst_id: int
+    is_tds_applicable: str
+    account_detail_nominal_tds_tcs_id: int
+    pan: str | None = None
+    it_group: str
+    gst_no: str | None = None
+    gst_group: str
+    inventory_id: int | None = None
+    transaction_entry_id: int
+    voucher_id: int
+    amount_dr: float | None = None
+    amount_cr: float | None = None
+    account_under_id: int
+
+@combination_api.post("/account_link_inventory__account__voucher_transaction_single/create/")
+async def create_account_link_inventory__account__voucher_transaction_single(account_link_inventory__account__voucher_transaction_single: Account_link_inventory__account__voucher_transaction_single = Depends(Account_link_inventory__account__voucher_transaction_single.as_form), db: Session = Depends(get_db)):
+    data = account_link_inventory__account__voucher_transaction_single.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO account_link_inventory__account__voucher_transaction_single({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Account_account_detail_personal_tax_link_inventory__account__voucher_transaction_single(BaseModel):
+    id: int | None = None
+    account_name: str
+    alias: str | None = None
+    opening_amount: float
+    note: str | None = None
+    account_detail_personal_tax_id: int
+    bill_by_bill: bool | None = None
+    credit_preiod: int | None = None
+    cost_center: bool | None = None
+    inventory_value_are_affected: bool
+    type_of_ledger: str
+    fraction_value: int | None = None
+    is_gst_applicable: str
+    account_detail_nominal_gst_id: int
+    is_tds_applicable: str
+    account_detail_nominal_tds_tcs_id: int
+    account_under_name: str
+    primary_group: str
+    account_detail_nominal_id: int
+    pan: str | None = None
+    it_group: str
+    gst_no: str | None = None
+    gst_group: str
+    inventory_id: int | None = None
+    transaction_entry_id: int
+    voucher_id: int
+    amount_dr: float | None = None
+    amount_cr: float | None = None
+    account_general_option_id: int
+    account_under_id: int
+
+@combination_api.post("/account_account_detail_personal_tax_link_inventory__account__voucher_transaction_single/create/")
+async def create_account_account_detail_personal_tax_link_inventory__account__voucher_transaction_single(account_account_detail_personal_tax_link_inventory__account__voucher_transaction_single: Account_account_detail_personal_tax_link_inventory__account__voucher_transaction_single = Depends(Account_account_detail_personal_tax_link_inventory__account__voucher_transaction_single.as_form), db: Session = Depends(get_db)):
+    data = account_account_detail_personal_tax_link_inventory__account__voucher_transaction_single.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO account_account_detail_personal_tax_link_inventory__account__voucher_transaction_single({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Account_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single(BaseModel):
+    id: int | None = None
+    account_name: str
+    alias: str | None = None
+    opening_amount: float
+    note: str | None = None
+    bill_by_bill: bool | None = None
+    credit_preiod: int | None = None
+    cost_center: bool | None = None
+    inventory_value_are_affected: bool
+    type_of_ledger: str
+    fraction_value: int | None = None
+    is_gst_applicable: str
+    account_detail_nominal_gst_id: int
+    is_tds_applicable: str
+    account_detail_nominal_tds_tcs_id: int
+    pan: str | None = None
+    it_group: str
+    gst_no: str | None = None
+    gst_group: str
+    account_under_name: str
+    primary_group: str
+    account_detail_personal_tax_id: int
+    inventory_id: int | None = None
+    transaction_entry_id: int
+    voucher_id: int
+    amount_dr: float | None = None
+    amount_cr: float | None = None
+    account_detail_nominal_id: int
+    account_general_option_id: int
+    account_under_id: int
+
+@combination_api.post("/account_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single/create/")
+async def create_account_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single(account_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single: Account_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single = Depends(Account_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single.as_form), db: Session = Depends(get_db)):
+    data = account_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO account_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Account_account_general_option_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single(BaseModel):
+    id: int | None = None
+    account_name: str
+    alias: str | None = None
+    opening_amount: float
+    note: str | None = None
+    inventory_id: int | None = None
+    transaction_entry_id: int
+    voucher_id: int
+    bill_by_bill: bool | None = None
+    credit_preiod: int | None = None
+    cost_center: bool | None = None
+    inventory_value_are_affected: bool
+    type_of_ledger: str
+    fraction_value: int | None = None
+    is_gst_applicable: str
+    account_detail_nominal_gst_id: int
+    is_tds_applicable: str
+    account_detail_nominal_tds_tcs_id: int
+    pan: str | None = None
+    it_group: str
+    gst_no: str | None = None
+    gst_group: str
+    account_under_name: str
+    primary_group: str
+    amount_dr: float | None = None
+    amount_cr: float | None = None
+    account_detail_personal_tax_id: int
+    account_detail_nominal_id: int
+    account_general_option_id: int
+    account_under_id: int
+
+@combination_api.post("/account_account_general_option_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single/create/")
+async def create_account_account_general_option_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single(account_account_general_option_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single: Account_account_general_option_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single = Depends(Account_account_general_option_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single.as_form), db: Session = Depends(get_db)):
+    data = account_account_general_option_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO account_account_general_option_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Account_account_under_account_general_option_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single(BaseModel):
+    id: int | None = None
+    account_name: str
+    alias: str | None = None
+    opening_amount: float
+    note: str | None = None
+    inventory_id: int | None = None
+    transaction_entry_id: int
+    voucher_id: int
+    amount_dr: float | None = None
+    amount_cr: float | None = None
+    bill_by_bill: bool | None = None
+    credit_preiod: int | None = None
+    cost_center: bool | None = None
+    inventory_value_are_affected: bool
+    type_of_ledger: str
+    fraction_value: int | None = None
+    is_gst_applicable: str
+    account_detail_nominal_gst_id: int
+    is_tds_applicable: str
+    account_detail_nominal_tds_tcs_id: int
+    pan: str | None = None
+    it_group: str
+    gst_no: str | None = None
+    gst_group: str
+    account_under_name: str
+    primary_group: str
+
+@combination_api.post("/account_account_under_account_general_option_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single/create/")
+async def create_account_account_under_account_general_option_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single(account_account_under_account_general_option_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single: Account_account_under_account_general_option_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single = Depends(Account_account_under_account_general_option_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single.as_form), db: Session = Depends(get_db)):
+    data = account_account_under_account_general_option_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO account_account_under_account_general_option_account_detail_nominal_account_detail_personal_tax_link_inventory__account__voucher_transaction_single({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Link_tag__all_table_tag(BaseModel):
+    id: int | None = None
+    table_name: str
+    table_id: int
+    tag_name: str
+
+@combination_api.post("/link_tag__all_table_tag/create/")
+async def create_link_tag__all_table_tag(link_tag__all_table_tag: Link_tag__all_table_tag = Depends(Link_tag__all_table_tag.as_form), db: Session = Depends(get_db)):
+    data = link_tag__all_table_tag.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO link_tag__all_table_tag({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Link_inventory__account__voucher_voucher(BaseModel):
+    id: int | None = None
+    account_name: str
+    alias: str | None = None
+    opening_amount: float
+    note: str | None = None
+    account_under_id: int
+    account_general_option_id: int
+    account_detail_nominal_id: int
+    account_detail_personal_tax_id: int
+    inventory_id: int | None = None
+    transaction_entry_id: int
+    voucher_id: int
+    account_id: int
+    part_no: str | None = None
+    inventory_under_id: int
+    unit_rate_id: int
+    is_gst_applicable: str
+    account_detail_nominal_gst_id: int
+    opening_qty: float
+    opening_unit_rate_id: int
+    narration: str | None = None
+    voucher_number: str
+    data: str
+    voucher_type_id: int
+
+@combination_api.post("/link_inventory__account__voucher_voucher/create/")
+async def create_link_inventory__account__voucher_voucher(link_inventory__account__voucher_voucher: Link_inventory__account__voucher_voucher = Depends(Link_inventory__account__voucher_voucher.as_form), db: Session = Depends(get_db)):
+    data = link_inventory__account__voucher_voucher.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO link_inventory__account__voucher_voucher({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Link_inventory__account__voucher_transaction_entry_voucher(BaseModel):
+    id: int | None = None
+    account_name: str
+    alias: str | None = None
+    opening_amount: float
+    note: str | None = None
+    account_under_id: int
+    account_general_option_id: int
+    account_detail_nominal_id: int
+    account_detail_personal_tax_id: int
+    transaction_entry_id: int
+    voucher_id: int
+    part_no: str | None = None
+    inventory_under_id: int
+    unit_rate_id: int
+    is_gst_applicable: str
+    account_detail_nominal_gst_id: int
+    opening_qty: float
+    opening_unit_rate_id: int
+    inventory_id: int | None = None
+    account_id: int
+    narration: str | None = None
+    voucher_number: str
+    data: str
+    voucher_type_id: int
+
+@combination_api.post("/link_inventory__account__voucher_transaction_entry_voucher/create/")
+async def create_link_inventory__account__voucher_transaction_entry_voucher(link_inventory__account__voucher_transaction_entry_voucher: Link_inventory__account__voucher_transaction_entry_voucher = Depends(Link_inventory__account__voucher_transaction_entry_voucher.as_form), db: Session = Depends(get_db)):
+    data = link_inventory__account__voucher_transaction_entry_voucher.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO link_inventory__account__voucher_transaction_entry_voucher({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Link_inventory__account__voucher_inventory_transaction_entry_voucher(BaseModel):
+    id: int | None = None
+    account_name: str
+    alias: str | None = None
+    opening_amount: float
+    note: str | None = None
+    account_under_id: int
+    account_general_option_id: int
+    account_detail_nominal_id: int
+    account_detail_personal_tax_id: int
+    voucher_id: int
+    part_no: str | None = None
+    inventory_under_id: int
+    unit_rate_id: int
+    is_gst_applicable: str
+    account_detail_nominal_gst_id: int
+    opening_qty: float
+    opening_unit_rate_id: int
+    account_id: int
+    narration: str | None = None
+    voucher_number: str
+    transaction_entry_id: int
+    data: str
+    voucher_type_id: int
+    inventory_id: int | None = None
+
+@combination_api.post("/link_inventory__account__voucher_inventory_transaction_entry_voucher/create/")
+async def create_link_inventory__account__voucher_inventory_transaction_entry_voucher(link_inventory__account__voucher_inventory_transaction_entry_voucher: Link_inventory__account__voucher_inventory_transaction_entry_voucher = Depends(Link_inventory__account__voucher_inventory_transaction_entry_voucher.as_form), db: Session = Depends(get_db)):
+    data = link_inventory__account__voucher_inventory_transaction_entry_voucher.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO link_inventory__account__voucher_inventory_transaction_entry_voucher({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Link_inventory__account__voucher_account_inventory_transaction_entry_voucher(BaseModel):
+    id: int | None = None
+    account_name: str
+    alias: str | None = None
+    opening_amount: float
+    note: str | None = None
+    account_under_id: int
+    account_general_option_id: int
+    account_detail_nominal_id: int
+    account_detail_personal_tax_id: int
+    part_no: str | None = None
+    inventory_under_id: int
+    unit_rate_id: int
+    is_gst_applicable: str
+    account_detail_nominal_gst_id: int
+    opening_qty: float
+    opening_unit_rate_id: int
+    voucher_number: str
+    data: str
+    narration: str | None = None
+    voucher_type_id: int
+    account_id: int
+    voucher_id: int
+
+@combination_api.post("/link_inventory__account__voucher_account_inventory_transaction_entry_voucher/create/")
+async def create_link_inventory__account__voucher_account_inventory_transaction_entry_voucher(link_inventory__account__voucher_account_inventory_transaction_entry_voucher: Link_inventory__account__voucher_account_inventory_transaction_entry_voucher = Depends(Link_inventory__account__voucher_account_inventory_transaction_entry_voucher.as_form), db: Session = Depends(get_db)):
+    data = link_inventory__account__voucher_account_inventory_transaction_entry_voucher.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO link_inventory__account__voucher_account_inventory_transaction_entry_voucher({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Transaction_single_transaction_entry(BaseModel):
+    id: int | None = None
+    account_name: str
+    alias: str | None = None
+    opening_amount: float
+    note: str | None = None
+    account_under_id: int
+    account_general_option_id: int
+    account_detail_nominal_id: int
+    account_detail_personal_tax_id: int
+    transaction_entry_id: int
+    amount_dr: float | None = None
+    amount_cr: float | None = None
+    account_id: int
+    narration: str | None = None
+    voucher_id: int
+    voucher_number: str
+
+@combination_api.post("/transaction_single_transaction_entry/create/")
+async def create_transaction_single_transaction_entry(transaction_single_transaction_entry: Transaction_single_transaction_entry = Depends(Transaction_single_transaction_entry.as_form), db: Session = Depends(get_db)):
+    data = transaction_single_transaction_entry.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO transaction_single_transaction_entry({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Transaction_single_account_transaction_entry(BaseModel):
+    id: int | None = None
+    account_name: str
+    alias: str | None = None
+    opening_amount: float
+    note: str | None = None
+    account_under_id: int
+    account_general_option_id: int
+    account_detail_nominal_id: int
+    account_detail_personal_tax_id: int
+    amount_dr: float | None = None
+    amount_cr: float | None = None
+    account_id: int
+    narration: str | None = None
+    voucher_id: int
+    voucher_number: str
+
+@combination_api.post("/transaction_single_account_transaction_entry/create/")
+async def create_transaction_single_account_transaction_entry(transaction_single_account_transaction_entry: Transaction_single_account_transaction_entry = Depends(Transaction_single_account_transaction_entry.as_form), db: Session = Depends(get_db)):
+    data = transaction_single_account_transaction_entry.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO transaction_single_account_transaction_entry({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Account_detail_nominal_gst_account_detail_nominal(BaseModel):
+    id: int | None = None
+    describe: str | None = None
+    hsn: str | None = None
+    is_capital_goods: bool | None = None
+    is_rcm_applicable: bool | None = None
+    igst_rate: int | None = None
+    cess: int | None = None
+    cess_type: str | None = None
+    bassed_on_value: int | None = None
+    bassed_on_qty_id: int | None = None
+    unit_name: str
+    fraction_count: int
+    inventory_value_are_affected: bool
+    type_of_ledger: str
+    fraction_value: int | None = None
+    is_gst_applicable: str
+    is_tds_applicable: str
+    account_detail_nominal_tds_tcs_id: int
+
+@combination_api.post("/account_detail_nominal_gst_account_detail_nominal/create/")
+async def create_account_detail_nominal_gst_account_detail_nominal(account_detail_nominal_gst_account_detail_nominal: Account_detail_nominal_gst_account_detail_nominal = Depends(Account_detail_nominal_gst_account_detail_nominal.as_form), db: Session = Depends(get_db)):
+    data = account_detail_nominal_gst_account_detail_nominal.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO account_detail_nominal_gst_account_detail_nominal({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Account_detail_nominal_gst_unit_rate_account_detail_nominal(BaseModel):
+    id: int | None = None
+    describe: str | None = None
+    hsn: str | None = None
+    is_capital_goods: bool | None = None
+    is_rcm_applicable: bool | None = None
+    igst_rate: int | None = None
+    cess: int | None = None
+    cess_type: str | None = None
+    bassed_on_value: int | None = None
+    bassed_on_qty_id: int | None = None
+    inventory_value_are_affected: bool
+    type_of_ledger: str
+    fraction_value: int | None = None
+    is_gst_applicable: str
+    is_tds_applicable: str
+    account_detail_nominal_tds_tcs_id: int
+    unit_name: str
+    fraction_count: int
+
+@combination_api.post("/account_detail_nominal_gst_unit_rate_account_detail_nominal/create/")
+async def create_account_detail_nominal_gst_unit_rate_account_detail_nominal(account_detail_nominal_gst_unit_rate_account_detail_nominal: Account_detail_nominal_gst_unit_rate_account_detail_nominal = Depends(Account_detail_nominal_gst_unit_rate_account_detail_nominal.as_form), db: Session = Depends(get_db)):
+    data = account_detail_nominal_gst_unit_rate_account_detail_nominal.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO account_detail_nominal_gst_unit_rate_account_detail_nominal({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Inventory_link_inventory__account__voucher(BaseModel):
+    id: int | None = None
+    account_name: str
+    alias: str | None = None
+    part_no: str | None = None
+    note: str | None = None
+    inventory_under_id: int
+    is_gst_applicable: str
+    account_detail_nominal_gst_id: int
+    opening_amount: float
+    opening_qty: float
+    opening_unit_rate_id: int
+    unit_name: str
+    fraction_count: int
+    unit_rate_id: int
+    inventory_under_name: str
+    account_id: int
+    transaction_entry_id: int
+    voucher_id: int
+
+@combination_api.post("/inventory_link_inventory__account__voucher/create/")
+async def create_inventory_link_inventory__account__voucher(inventory_link_inventory__account__voucher: Inventory_link_inventory__account__voucher = Depends(Inventory_link_inventory__account__voucher.as_form), db: Session = Depends(get_db)):
+    data = inventory_link_inventory__account__voucher.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO inventory_link_inventory__account__voucher({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Inventory_inventory_under_link_inventory__account__voucher(BaseModel):
+    id: int | None = None
+    account_name: str
+    alias: str | None = None
+    part_no: str | None = None
+    note: str | None = None
+    inventory_under_id: int
+    is_gst_applicable: str
+    account_detail_nominal_gst_id: int
+    opening_amount: float
+    opening_qty: float
+    opening_unit_rate_id: int
+    unit_name: str
+    fraction_count: int
+    inventory_under_name: str
+    account_id: int
+    transaction_entry_id: int
+    voucher_id: int
+    unit_rate_id: int
+
+@combination_api.post("/inventory_inventory_under_link_inventory__account__voucher/create/")
+async def create_inventory_inventory_under_link_inventory__account__voucher(inventory_inventory_under_link_inventory__account__voucher: Inventory_inventory_under_link_inventory__account__voucher = Depends(Inventory_inventory_under_link_inventory__account__voucher.as_form), db: Session = Depends(get_db)):
+    data = inventory_inventory_under_link_inventory__account__voucher.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO inventory_inventory_under_link_inventory__account__voucher({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Inventory_unit_rate_inventory_under_link_inventory__account__voucher(BaseModel):
+    id: int | None = None
+    account_name: str
+    alias: str | None = None
+    part_no: str | None = None
+    note: str | None = None
+    is_gst_applicable: str
+    account_detail_nominal_gst_id: int
+    opening_amount: float
+    opening_qty: float
+    opening_unit_rate_id: int
+    inventory_under_name: str
+    unit_name: str
+    fraction_count: int
+    account_id: int
+    transaction_entry_id: int
+    voucher_id: int
+    inventory_under_id: int
+
+@combination_api.post("/inventory_unit_rate_inventory_under_link_inventory__account__voucher/create/")
+async def create_inventory_unit_rate_inventory_under_link_inventory__account__voucher(inventory_unit_rate_inventory_under_link_inventory__account__voucher: Inventory_unit_rate_inventory_under_link_inventory__account__voucher = Depends(Inventory_unit_rate_inventory_under_link_inventory__account__voucher.as_form), db: Session = Depends(get_db)):
+    data = inventory_unit_rate_inventory_under_link_inventory__account__voucher.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO inventory_unit_rate_inventory_under_link_inventory__account__voucher({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Inventory_unit_rate_unit_rate_inventory_under_link_inventory__account__voucher(BaseModel):
+    id: int | None = None
+    account_id: int
+    transaction_entry_id: int
+    voucher_id: int
+    account_name: str
+    alias: str | None = None
+    part_no: str | None = None
+    note: str | None = None
+    is_gst_applicable: str
+    account_detail_nominal_gst_id: int
+    opening_amount: float
+    opening_qty: float
+    opening_unit_rate_id: int
+    inventory_under_name: str
+    unit_name: str
+    fraction_count: int
+
+@combination_api.post("/inventory_unit_rate_unit_rate_inventory_under_link_inventory__account__voucher/create/")
+async def create_inventory_unit_rate_unit_rate_inventory_under_link_inventory__account__voucher(inventory_unit_rate_unit_rate_inventory_under_link_inventory__account__voucher: Inventory_unit_rate_unit_rate_inventory_under_link_inventory__account__voucher = Depends(Inventory_unit_rate_unit_rate_inventory_under_link_inventory__account__voucher.as_form), db: Session = Depends(get_db)):
+    data = inventory_unit_rate_unit_rate_inventory_under_link_inventory__account__voucher.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO inventory_unit_rate_unit_rate_inventory_under_link_inventory__account__voucher({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Voucher_transaction_entry(BaseModel):
+    id: int | None = None
+    voucher_number: str
+    data: str
+    narration: str | None = None
+    voucher_number_start_from: int
+    voucher_number_prefix: str | None = None
+    voucher_number_sufix: str | None = None
+    primary_voucher_type: str
+    prevent_duplicate: bool
+    inventory_id: int | None = None
+    account_id: int
+    transaction_entry_id: int
+    voucher_type_id: int
+
+@combination_api.post("/voucher_transaction_entry/create/")
+async def create_voucher_transaction_entry(voucher_transaction_entry: Voucher_transaction_entry = Depends(Voucher_transaction_entry.as_form), db: Session = Depends(get_db)):
+    data = voucher_transaction_entry.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO voucher_transaction_entry({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Voucher_link_inventory__account__voucher_transaction_entry(BaseModel):
+    id: int | None = None
+    inventory_id: int | None = None
+    account_id: int
+    transaction_entry_id: int
+    voucher_number: str
+    data: str
+    narration: str | None = None
+    voucher_number_start_from: int
+    voucher_number_prefix: str | None = None
+    voucher_number_sufix: str | None = None
+    primary_voucher_type: str
+    prevent_duplicate: bool
+    voucher_type_id: int
+
+@combination_api.post("/voucher_link_inventory__account__voucher_transaction_entry/create/")
+async def create_voucher_link_inventory__account__voucher_transaction_entry(voucher_link_inventory__account__voucher_transaction_entry: Voucher_link_inventory__account__voucher_transaction_entry = Depends(Voucher_link_inventory__account__voucher_transaction_entry.as_form), db: Session = Depends(get_db)):
+    data = voucher_link_inventory__account__voucher_transaction_entry.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO voucher_link_inventory__account__voucher_transaction_entry({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Voucher_voucher_type_link_inventory__account__voucher_transaction_entry(BaseModel):
+    id: int | None = None
+    inventory_id: int | None = None
+    account_id: int
+    transaction_entry_id: int
+    voucher_number: str
+    data: str
+    narration: str | None = None
+    voucher_number_start_from: int
+    voucher_number_prefix: str | None = None
+    voucher_number_sufix: str | None = None
+    primary_voucher_type: str
+    prevent_duplicate: bool
+
+@combination_api.post("/voucher_voucher_type_link_inventory__account__voucher_transaction_entry/create/")
+async def create_voucher_voucher_type_link_inventory__account__voucher_transaction_entry(voucher_voucher_type_link_inventory__account__voucher_transaction_entry: Voucher_voucher_type_link_inventory__account__voucher_transaction_entry = Depends(Voucher_voucher_type_link_inventory__account__voucher_transaction_entry.as_form), db: Session = Depends(get_db)):
+    data = voucher_voucher_type_link_inventory__account__voucher_transaction_entry.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO voucher_voucher_type_link_inventory__account__voucher_transaction_entry({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Transaction_entry_transaction_single(BaseModel):
+    id: int | None = None
+    voucher_number: str
+    data: str
+    narration: str | None = None
+    voucher_type_id: int
+    account_id: int
+    inventory_id: int | None = None
+    voucher_id: int
+    amount_dr: float | None = None
+    amount_cr: float | None = None
+
+@combination_api.post("/transaction_entry_transaction_single/create/")
+async def create_transaction_entry_transaction_single(transaction_entry_transaction_single: Transaction_entry_transaction_single = Depends(Transaction_entry_transaction_single.as_form), db: Session = Depends(get_db)):
+    data = transaction_entry_transaction_single.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO transaction_entry_transaction_single({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Transaction_entry_link_inventory__account__voucher_transaction_single(BaseModel):
+    id: int | None = None
+    inventory_id: int | None = None
+    account_id: int
+    voucher_id: int
+    voucher_number: str
+    data: str
+    narration: str | None = None
+    voucher_type_id: int
+    amount_dr: float | None = None
+    amount_cr: float | None = None
+
+@combination_api.post("/transaction_entry_link_inventory__account__voucher_transaction_single/create/")
+async def create_transaction_entry_link_inventory__account__voucher_transaction_single(transaction_entry_link_inventory__account__voucher_transaction_single: Transaction_entry_link_inventory__account__voucher_transaction_single = Depends(Transaction_entry_link_inventory__account__voucher_transaction_single.as_form), db: Session = Depends(get_db)):
+    data = transaction_entry_link_inventory__account__voucher_transaction_single.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO transaction_entry_link_inventory__account__voucher_transaction_single({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Transaction_entry_voucher_link_inventory__account__voucher_transaction_single(BaseModel):
+    id: int | None = None
+    inventory_id: int | None = None
+    account_id: int
+    voucher_id: int
+    amount_dr: float | None = None
+    amount_cr: float | None = None
+    voucher_number: str
+    data: str
+    narration: str | None = None
+    voucher_type_id: int
+
+@combination_api.post("/transaction_entry_voucher_link_inventory__account__voucher_transaction_single/create/")
+async def create_transaction_entry_voucher_link_inventory__account__voucher_transaction_single(transaction_entry_voucher_link_inventory__account__voucher_transaction_single: Transaction_entry_voucher_link_inventory__account__voucher_transaction_single = Depends(Transaction_entry_voucher_link_inventory__account__voucher_transaction_single.as_form), db: Session = Depends(get_db)):
+    data = transaction_entry_voucher_link_inventory__account__voucher_transaction_single.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO transaction_entry_voucher_link_inventory__account__voucher_transaction_single({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Inventory_under_inventory(BaseModel):
+    id: int | None = None
+    account_name: str
+    alias: str | None = None
+    part_no: str | None = None
+    note: str | None = None
+    unit_rate_id: int
+    is_gst_applicable: str
+    account_detail_nominal_gst_id: int
+    opening_amount: float
+    opening_qty: float
+    opening_unit_rate_id: int
+    inventory_under_name: str
+
+@combination_api.post("/inventory_under_inventory/create/")
+async def create_inventory_under_inventory(inventory_under_inventory: Inventory_under_inventory = Depends(Inventory_under_inventory.as_form), db: Session = Depends(get_db)):
+    data = inventory_under_inventory.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO inventory_under_inventory({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Account_general_option_account(BaseModel):
+    id: int | None = None
+    account_name: str
+    alias: str | None = None
+    opening_amount: float
+    note: str | None = None
+    account_under_id: int
+    account_detail_nominal_id: int
+    account_detail_personal_tax_id: int
+    bill_by_bill: bool | None = None
+    credit_preiod: int | None = None
+    cost_center: bool | None = None
+
+@combination_api.post("/account_general_option_account/create/")
+async def create_account_general_option_account(account_general_option_account: Account_general_option_account = Depends(Account_general_option_account.as_form), db: Session = Depends(get_db)):
+    data = account_general_option_account.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO account_general_option_account({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Account_detail_nominal_tds_tcs_account_detail_nominal(BaseModel):
+    id: int | None = None
+    describe: str | None = None
+    section: str
+    rate: float
+    tax_limit: int
+    amount_limit: int
+    tds_tcs: str
+    inventory_value_are_affected: bool
+    type_of_ledger: str
+    fraction_value: int | None = None
+    is_gst_applicable: str
+    account_detail_nominal_gst_id: int
+    is_tds_applicable: str
+
+@combination_api.post("/account_detail_nominal_tds_tcs_account_detail_nominal/create/")
+async def create_account_detail_nominal_tds_tcs_account_detail_nominal(account_detail_nominal_tds_tcs_account_detail_nominal: Account_detail_nominal_tds_tcs_account_detail_nominal = Depends(Account_detail_nominal_tds_tcs_account_detail_nominal.as_form), db: Session = Depends(get_db)):
+    data = account_detail_nominal_tds_tcs_account_detail_nominal.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO account_detail_nominal_tds_tcs_account_detail_nominal({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Unit_rate_conversion_unit_rate(BaseModel):
+    id: int | None = None
+    unit_from_id: int
+    unit_to_id: int
+    rate_of_conversion: int
+    unit_name: str
+    fraction_count: int
+
+@combination_api.post("/unit_rate_conversion_unit_rate/create/")
+async def create_unit_rate_conversion_unit_rate(unit_rate_conversion_unit_rate: Unit_rate_conversion_unit_rate = Depends(Unit_rate_conversion_unit_rate.as_form), db: Session = Depends(get_db)):
+    data = unit_rate_conversion_unit_rate.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO unit_rate_conversion_unit_rate({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Unit_rate_conversion_unit_rate_unit_rate(BaseModel):
+    id: int | None = None
+    unit_from_id: int
+    unit_to_id: int
+    rate_of_conversion: int
+    unit_name: str
+    fraction_count: int
+
+@combination_api.post("/unit_rate_conversion_unit_rate_unit_rate/create/")
+async def create_unit_rate_conversion_unit_rate_unit_rate(unit_rate_conversion_unit_rate_unit_rate: Unit_rate_conversion_unit_rate_unit_rate = Depends(Unit_rate_conversion_unit_rate_unit_rate.as_form), db: Session = Depends(get_db)):
+    data = unit_rate_conversion_unit_rate_unit_rate.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO unit_rate_conversion_unit_rate_unit_rate({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Account_detail_nominal_account(BaseModel):
+    id: int | None = None
+    describe: str | None = None
+    section: str
+    rate: float
+    tax_limit: int
+    amount_limit: int
+    tds_tcs: str
+    inventory_value_are_affected: bool
+    type_of_ledger: str
+    fraction_value: int | None = None
+    is_gst_applicable: str
+    account_detail_nominal_gst_id: int
+    is_tds_applicable: str
+    hsn: str | None = None
+    is_capital_goods: bool | None = None
+    is_rcm_applicable: bool | None = None
+    igst_rate: int | None = None
+    cess: int | None = None
+    cess_type: str | None = None
+    bassed_on_value: int | None = None
+    bassed_on_qty_id: int | None = None
+    account_detail_nominal_tds_tcs_id: int
+    account_name: str
+    alias: str | None = None
+    opening_amount: float
+    note: str | None = None
+    account_under_id: int
+    account_general_option_id: int
+    account_detail_personal_tax_id: int
+
+@combination_api.post("/account_detail_nominal_account/create/")
+async def create_account_detail_nominal_account(account_detail_nominal_account: Account_detail_nominal_account = Depends(Account_detail_nominal_account.as_form), db: Session = Depends(get_db)):
+    data = account_detail_nominal_account.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO account_detail_nominal_account({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Account_detail_nominal_account_detail_nominal_gst_account(BaseModel):
+    id: int | None = None
+    describe: str | None = None
+    hsn: str | None = None
+    is_capital_goods: bool | None = None
+    is_rcm_applicable: bool | None = None
+    igst_rate: int | None = None
+    cess: int | None = None
+    cess_type: str | None = None
+    bassed_on_value: int | None = None
+    bassed_on_qty_id: int | None = None
+    section: str
+    rate: float
+    tax_limit: int
+    amount_limit: int
+    tds_tcs: str
+    inventory_value_are_affected: bool
+    type_of_ledger: str
+    fraction_value: int | None = None
+    is_gst_applicable: str
+    is_tds_applicable: str
+    account_name: str
+    alias: str | None = None
+    opening_amount: float
+    note: str | None = None
+    account_under_id: int
+    account_general_option_id: int
+    account_detail_personal_tax_id: int
+    account_detail_nominal_gst_id: int
+    account_detail_nominal_tds_tcs_id: int
+
+@combination_api.post("/account_detail_nominal_account_detail_nominal_gst_account/create/")
+async def create_account_detail_nominal_account_detail_nominal_gst_account(account_detail_nominal_account_detail_nominal_gst_account: Account_detail_nominal_account_detail_nominal_gst_account = Depends(Account_detail_nominal_account_detail_nominal_gst_account.as_form), db: Session = Depends(get_db)):
+    data = account_detail_nominal_account_detail_nominal_gst_account.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO account_detail_nominal_account_detail_nominal_gst_account({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Account_detail_nominal_account_detail_nominal_tds_tcs_account_detail_nominal_gst_account(BaseModel):
+    id: int | None = None
+    account_name: str
+    alias: str | None = None
+    opening_amount: float
+    note: str | None = None
+    account_under_id: int
+    account_general_option_id: int
+    account_detail_personal_tax_id: int
+    describe: str | None = None
+    hsn: str | None = None
+    is_capital_goods: bool | None = None
+    is_rcm_applicable: bool | None = None
+    igst_rate: int | None = None
+    cess: int | None = None
+    cess_type: str | None = None
+    bassed_on_value: int | None = None
+    bassed_on_qty_id: int | None = None
+    section: str
+    rate: float
+    tax_limit: int
+    amount_limit: int
+    tds_tcs: str
+    inventory_value_are_affected: bool
+    type_of_ledger: str
+    fraction_value: int | None = None
+    is_gst_applicable: str
+    is_tds_applicable: str
+
+@combination_api.post("/account_detail_nominal_account_detail_nominal_tds_tcs_account_detail_nominal_gst_account/create/")
+async def create_account_detail_nominal_account_detail_nominal_tds_tcs_account_detail_nominal_gst_account(account_detail_nominal_account_detail_nominal_tds_tcs_account_detail_nominal_gst_account: Account_detail_nominal_account_detail_nominal_tds_tcs_account_detail_nominal_gst_account = Depends(Account_detail_nominal_account_detail_nominal_tds_tcs_account_detail_nominal_gst_account.as_form), db: Session = Depends(get_db)):
+    data = account_detail_nominal_account_detail_nominal_tds_tcs_account_detail_nominal_gst_account.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO account_detail_nominal_account_detail_nominal_tds_tcs_account_detail_nominal_gst_account({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Voucher_type_voucher(BaseModel):
+    id: int | None = None
+    voucher_number: str
+    data: str
+    narration: str | None = None
+    voucher_number_start_from: int
+    voucher_number_prefix: str | None = None
+    voucher_number_sufix: str | None = None
+    primary_voucher_type: str
+    prevent_duplicate: bool
+
+@combination_api.post("/voucher_type_voucher/create/")
+async def create_voucher_type_voucher(voucher_type_voucher: Voucher_type_voucher = Depends(Voucher_type_voucher.as_form), db: Session = Depends(get_db)):
+    data = voucher_type_voucher.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO voucher_type_voucher({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Account_detail_personal_tax_account(BaseModel):
+    id: int | None = None
+    account_name: str
+    alias: str | None = None
+    opening_amount: float
+    note: str | None = None
+    account_under_id: int
+    account_general_option_id: int
+    account_detail_nominal_id: int
+    pan: str | None = None
+    it_group: str
+    gst_no: str | None = None
+    gst_group: str
+
+@combination_api.post("/account_detail_personal_tax_account/create/")
+async def create_account_detail_personal_tax_account(account_detail_personal_tax_account: Account_detail_personal_tax_account = Depends(Account_detail_personal_tax_account.as_form), db: Session = Depends(get_db)):
+    data = account_detail_personal_tax_account.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO account_detail_personal_tax_account({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Tag_link_tag__all_table(BaseModel):
+    id: int | None = None
+    table_name: str
+    table_id: int
+    tag_name: str
+
+@combination_api.post("/tag_link_tag__all_table/create/")
+async def create_tag_link_tag__all_table(tag_link_tag__all_table: Tag_link_tag__all_table = Depends(Tag_link_tag__all_table.as_form), db: Session = Depends(get_db)):
+    data = tag_link_tag__all_table.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO tag_link_tag__all_table({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@as_form
+class Account_under_account(BaseModel):
+    id: int | None = None
+    account_name: str
+    alias: str | None = None
+    opening_amount: float
+    note: str | None = None
+    account_general_option_id: int
+    account_detail_nominal_id: int
+    account_detail_personal_tax_id: int
+    account_under_name: str
+    primary_group: str
+
+@combination_api.post("/account_under_account/create/")
+async def create_account_under_account(account_under_account: Account_under_account = Depends(Account_under_account.as_form), db: Session = Depends(get_db)):
+    data = account_under_account.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO account_under_account({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
     db.commit()
     return "ok"
 
