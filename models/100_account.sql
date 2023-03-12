@@ -6,9 +6,9 @@ CREATE TABLE if NOT EXISTS account (
     note TEXT,
     
     account_under_id INTEGER NOT NULL,
-    account_general_option_id INTEGER NOT NULL,
-    account_detail_nominal_id INTEGER NOT NULL,
-    account_detail_personal_tax_id INTEGER NOT NULL,
+    account_general_option_id INTEGER NOT NULL UNIQUE,
+    account_detail_nominal_id INTEGER NOT NULL UNIQUE,
+    account_detail_personal_tax_id INTEGER NOT NULL UNIQUE,
     
 
     FOREIGN KEY(account_under_id) REFERENCES account_under(id),

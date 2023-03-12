@@ -162,6 +162,56 @@ async def update_link_inventory__account__voucher(link_inventory__account__vouch
 
 
 @as_form
+class Transaction_single(BaseModel):
+    id: int | None = None
+    transaction_entry_id: int
+    account_id: int
+    amount_dr: float | None = None
+    amount_cr: float | None = None
+
+@default_api.post("/transaction_single/create/")
+async def create_transaction_single(transaction_single: Transaction_single = Depends(Transaction_single.as_form), db: Session = Depends(get_db)):
+    data = transaction_single.dict()
+    del data['id']
+    columns = ', '.join(data.keys())
+    placeholders = ':'+', :'.join(data.keys())
+    query = f'INSERT INTO transaction_single({columns}) VALUES ({placeholders});'
+    db.execute(query, data)
+    db.commit()
+    return "ok"
+
+
+@default_api.get("/transaction_single/get/")
+async def get_transaction_single(db: Session = Depends(get_db)):
+    rs = db.execute("SELECT * FROM transaction_single;").all()
+    return rs
+
+@default_api.delete("/transaction_single/delete/")
+async def delete_transaction_single(ids: list[int], db: Session = Depends(get_db)):
+    for id in ids:
+        rs = db.execute(f"SELECT * FROM transaction_single WHERE id = {str(id)};").all()
+        if len(rs) == 0:
+            raise HTTPException(status_code=404, detail=f"'{str(id)}'")
+        db.execute(f"DELETE FROM transaction_single WHERE id = {str(id)};")
+    db.commit()
+    return "ok"
+
+@default_api.put("/transaction_single/update/")
+async def update_transaction_single(transaction_single: Transaction_single = Depends(Transaction_single.as_form), db: Session = Depends(get_db)):
+    data = transaction_single.dict()
+    id = data['id']
+    del data['id']
+    list_of_data = [i for i in zip(data.keys(), data.values())]
+    print(list_of_data)
+    query = 'UPDATE transaction_single SET {}'.format(', '.join("%s='%s'" % (k) for k in list_of_data))
+    query = query + ' WHERE id = ' + str(id) + ';'
+    print(query)
+    db.execute(query)
+    db.commit()
+    return "ok"
+
+
+@as_form
 class Account_detail_nominal_gst(BaseModel):
     id: int | None = None
     describe: str | None = None
@@ -327,9 +377,6 @@ async def update_voucher(voucher: Voucher = Depends(Voucher.as_form), db: Sessio
 class Transaction_entry(BaseModel):
     id: int | None = None
     account_id: int
-    ref_account_id: int
-    amount_dr: float
-    amount_cr: float
     narration: str | None = None
     voucher_id: int
     voucher_number: str
@@ -426,9 +473,9 @@ async def update_inventory_under(inventory_under: Inventory_under = Depends(Inve
 @as_form
 class Account_general_option(BaseModel):
     id: int | None = None
-    bill_by_bill: bool
+    bill_by_bill: bool | None = None
     credit_preiod: int | None = None
-    cost_center: bool
+    cost_center: bool | None = None
 
 @default_api.post("/account_general_option/create/")
 async def create_account_general_option(account_general_option: Account_general_option = Depends(Account_general_option.as_form), db: Session = Depends(get_db)):

@@ -178,6 +178,62 @@ class LinkInventoryAccountVoucherCreateForm extends HTMLElement {
 }
 window.customElements.define('link-inventory--account--voucher-create-form', LinkInventoryAccountVoucherCreateForm);
 
+const transaction_single_create_template = document.createElement('template');
+transaction_single_create_template.innerHTML = /*html*/`
+<style>
+  .transaction-single-create-form {
+    
+  }
+</style>
+
+<div class="transaction-single-create-form">
+  <div class="head">Transaction Single<div>
+  <form action="/transaction_single/create/" method="post">
+<div hidden>
+<label for="id">Id</label>
+<input type="number" id="id" name="id" >
+</div>
+<div >
+<label for="transaction_entry_id">Transaction Entry Id</label>
+<input type="number" id="transaction_entry_id" name="transaction_entry_id" required>
+</div>
+<div >
+<label for="account_id">Account Id</label>
+<input type="number" id="account_id" name="account_id" required>
+</div>
+<div >
+<label for="amount_dr">Amount Dr</label>
+<input type="number" id="amount_dr" name="amount_dr" >
+</div>
+<div >
+<label for="amount_cr">Amount Cr</label>
+<input type="number" id="amount_cr" name="amount_cr" >
+</div>
+<input type="submit" value="Create">
+</form>
+
+</div>`;
+
+class TransactionSingleCreateForm extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(transaction_single_create_template.content.cloneNode(true));
+    //  this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
+    //  this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');   
+  }
+
+  connectedCallback() {
+    //    this.h3 = this.getAttribute("name")
+    this.render();
+  }
+
+  render() {
+    //    this.h3;
+  }
+}
+window.customElements.define('transaction-single-create-form', TransactionSingleCreateForm);
+
 const account_detail_nominal_gst_create_template = document.createElement('template');
 account_detail_nominal_gst_create_template.innerHTML = /*html*/`
 <style>
@@ -414,18 +470,6 @@ transaction_entry_create_template.innerHTML = /*html*/`
 <input type="number" id="account_id" name="account_id" required>
 </div>
 <div >
-<label for="ref_account_id">Ref Account Id</label>
-<input type="number" id="ref_account_id" name="ref_account_id" required>
-</div>
-<div >
-<label for="amount_dr">Amount Dr</label>
-<input type="number" id="amount_dr" name="amount_dr" required>
-</div>
-<div >
-<label for="amount_cr">Amount Cr</label>
-<input type="number" id="amount_cr" name="amount_cr" required>
-</div>
-<div >
 <label for="narration">Narration</label>
 <input type="text" id="narration" name="narration" >
 </div>
@@ -523,7 +567,7 @@ account_general_option_create_template.innerHTML = /*html*/`
 </div>
 <div >
 <label for="bill_by_bill">Bill By Bill</label>
-<input type="checkbox" id="bill_by_bill" name="bill_by_bill" required>
+<input type="checkbox" id="bill_by_bill" name="bill_by_bill" >
 </div>
 <div >
 <label for="credit_preiod">Credit Preiod</label>
@@ -531,7 +575,7 @@ account_general_option_create_template.innerHTML = /*html*/`
 </div>
 <div >
 <label for="cost_center">Cost Center</label>
-<input type="checkbox" id="cost_center" name="cost_center" required>
+<input type="checkbox" id="cost_center" name="cost_center" >
 </div>
 <input type="submit" value="Create">
 </form>
